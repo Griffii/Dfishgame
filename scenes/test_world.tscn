@@ -187,7 +187,7 @@ tile_set = SubResource("TileSet_364ex")
 use_kinematic_bodies = true
 
 [node name="TestPlayer" parent="." instance=ExtResource("2_1in50")]
-position = Vector2(335, -231)
+position = Vector2(143, -399)
 
 [node name="TileMapLayer_Water_Foreground" type="TileMapLayer" parent="."]
 position = Vector2(705, -224)
