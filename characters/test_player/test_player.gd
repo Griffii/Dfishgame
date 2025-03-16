@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D  # Changed from Sprite2d cause this shit can move now
 @onready var collision_shape_player: CollisionShape2D = $CollisionShape_Player
 
 
@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 	# Update the ground status
 	move_and_slide()
 	is_on_ground = is_on_floor()
+	
+	update_animation() #we animated up in this bitch
 
 
 func move_player(delta):
@@ -107,3 +109,11 @@ func update_timers(delta: float) -> void:
 		coyote_time -= delta
 	if jump_buffer > 0:
 		jump_buffer -= delta
+		
+func update_animation():
+	if not is_on_ground:
+		sprite.play("jumping")  # Play jumping animation when in the air
+	elif abs(velocity.x) > 10:
+		sprite.play("swimming")  # Play swimming when moving on the ground
+	else:
+		sprite.play("idle")  # Play idle when standing still
