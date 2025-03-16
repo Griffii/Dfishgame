@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crrin58g21mns"
-path="res://.godot/imported/Taiyaki.png-059eb0eca2ece6647c30f5a5a878426b.ctex"
+uid="uid://bv8qfdjaqf5lr"
+path="res://.godot/imported/salmon_1_jumping.png-ac582f9dc8f97cc75197c73bebba497b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/test_player/Taiyaki.png"
-dest_files=["res://.godot/imported/Taiyaki.png-059eb0eca2ece6647c30f5a5a878426b.ctex"]
+source_file="res://characters/D_salmon/salmon_1_jumping.png"
+dest_files=["res://.godot/imported/salmon_1_jumping.png-ac582f9dc8f97cc75197c73bebba497b.ctex"]
 
 [params]
 

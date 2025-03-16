@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8qfdjaqf5lr"
-path="res://.godot/imported/salmon_1_jumping.png-27e5df725de47e890848c431e7633523.ctex"
+uid="uid://c28ous145yfbp"
+path="res://.godot/imported/salmon_1.png-94fd34b4c6aec8099b46137436f9d651.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/test_player/salmon_1_jumping.png"
-dest_files=["res://.godot/imported/salmon_1_jumping.png-27e5df725de47e890848c431e7633523.ctex"]
+source_file="res://characters/D_salmon/salmon_1.png"
+dest_files=["res://.godot/imported/salmon_1.png-94fd34b4c6aec8099b46137436f9d651.ctex"]
 
 [params]
 
