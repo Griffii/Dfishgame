@@ -1,19 +1,131 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvsh411jaiyb7"]
+[gd_scene load_steps=20 format=3 uid="uid://cvsh411jaiyb7"]
 
 [ext_resource type="Script" path="res://characters/test_player/test_player.gd" id="1_bs1s5"]
-[ext_resource type="Texture2D" uid="uid://crrin58g21mns" path="res://characters/test_player/Taiyaki.png" id="2_6d2qe"]
+[ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/test_player/salmon_1.png" id="2_qvqbl"]
+[ext_resource type="Texture2D" uid="uid://bv8qfdjaqf5lr" path="res://characters/test_player/salmon_1_jumping.png" id="3_t5wey"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftowo"]
 radius = 5.0
 height = 22.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ldn6"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m653s"]
+atlas = ExtResource("3_t5wey")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5283k"]
+atlas = ExtResource("3_t5wey")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eljf"]
+atlas = ExtResource("3_t5wey")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6acn"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w586q"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnfmx"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fef0d"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erptx"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs4bc"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0qfo"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juvua"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 896, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3oiy"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 1024, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsnah"]
+atlas = ExtResource("2_qvqbl")
+region = Rect2(0, 1152, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ow2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ldn6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m653s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5283k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eljf")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6acn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w586q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnfmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fef0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erptx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs4bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0qfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juvua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3oiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsnah")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 16.0
+}]
+
 [node name="TestPlayer" type="CharacterBody2D"]
 script = ExtResource("1_bs1s5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, -5)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_6d2qe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56935
@@ -26,3 +138,11 @@ limit_left = 0
 limit_right = 2300
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.289844, 0.260547)
+sprite_frames = SubResource("SpriteFrames_2ow2t")
+animation = &"swimming"
+frame = 7
+frame_progress = 0.0447826
