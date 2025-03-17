@@ -7,7 +7,7 @@ uniform vec4 water_color = vec4(0.0, 0.4, 0.8, 0.6); // Semi-transparent water c
 
 void fragment() {
     vec2 uv = UV;
-    
+
     // Apply sine wave distortion to the top edge of the water
     float wave = sin(uv.x * wave_frequency + TIME * time_scale) * (wave_amplitude * 0.01);
 
