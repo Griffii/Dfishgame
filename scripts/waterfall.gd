@@ -5,9 +5,11 @@ func _ready():
 	$WaterArea.body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):  # Use groups to detect the player
+	if body.is_in_group("player"):
 		body.enter_water()
+		body.enter_waterfall()
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
 		body.exit_water()
+		body.exit_waterfall()
