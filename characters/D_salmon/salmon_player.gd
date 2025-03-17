@@ -34,13 +34,11 @@ func change_state(new_state: PlayerState):
 
 
 func enter_water():
-	print("Player entered water.")
 	is_in_water = true
 	just_exited_water = false
 	change_state(swimming_state)
 
 func exit_water():
-	print("Player left water.")
 	is_in_water = false
 	just_exited_water = true
 	change_state(flopping_state)

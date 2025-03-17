@@ -17,7 +17,7 @@ void fragment() {
 
     // Generate subtle color variation using random noise
     float variation = random(floor(uv * 50.0));  // Adjust scale for different-sized streaks
-    variation = mix(-color_variation_intensity, color_variation_intensity, variation);  
+    variation = mix(-color_variation_intensity, color_variation_intensity, variation);
 
     // Apply variation to the water color
     vec4 final_color = water_color + vec4(variation, variation * 0.5, variation * 0.8, 0.0);  // Subtle shifting blues
