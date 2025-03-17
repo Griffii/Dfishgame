@@ -7,13 +7,16 @@ extends PlayerState
 @export var max_fall_speed: float = 600.0  # Cap falling speed
 @export var max_air_speed: float = 100.0  # Maximum air speed
 @export var ground_friction: float = 500.0  # Strong deceleration on landing
-@export var jump_buffer: float = 0.5  # Allows short jumps if jump key is released early
+@export var jump_buffer_time: float = 0.2  # Allows buffering jumps before landing
+@export var min_jump_force: float = -200.0  # Minimum jump force for short jumps
 
 var jump_held: bool = false  # Tracks if jump key is still held
+var jump_buffer_timer: float = 0.0  # Timer to track buffered jump input
 
 func enter():
-	player.velocity.y = jump_force  # Apply the jump force on entry
+	player.velocity.y = jump_force  # Apply jump force on entry
 	jump_held = true  # Start jump buffer tracking
+	jump_buffer_timer = 0.0  # Reset buffer timer
 
 func physics_process(delta):
 	flopping(delta)
@@ -24,9 +27,13 @@ func flopping(delta):
 	player.velocity.y += gravity * delta
 	player.velocity.y = min(player.velocity.y, max_fall_speed)  # Cap fall speed
 	
-	# Apply jump buffer for variable jump height
+	# Store jump input in buffer if pressed
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time  # Reset buffer timer
+	
+	# Reduce jump height if jump is released early (variable jump height)
 	if jump_held and not Input.is_action_pressed("jump"):
-		player.velocity.y = max(player.velocity.y, jump_force * jump_buffer)  # Reduce jump height
+		player.velocity.y = max(player.velocity.y, min_jump_force)
 		jump_held = false  # Stop applying extra jump force
 	
 	# Left/Right Movement with Acceleration & Deceleration
@@ -47,9 +54,15 @@ func flopping(delta):
 	# Instant deceleration when hitting the ground
 	if player.is_on_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0, ground_friction * delta)
-	
+		
+		# Process jump buffer - allow jump if input was pressed shortly before landing
+		if jump_buffer_timer > 0:
+			player.velocity.y = jump_force  # Execute buffered jump
+			jump_held = true
+			jump_buffer_timer = 0  # Reset buffer
+			
 		# Allow another flop (jump) if touching the ground
-		if Input.is_action_just_pressed("jump"):
+		elif Input.is_action_just_pressed("jump"):
 			player.velocity.y = jump_force  # Launch again
 			jump_held = true  # Reset jump buffer tracking
 	
@@ -60,3 +73,7 @@ func flopping(delta):
 	# Return to swimming if back in water
 	if player.is_in_water:
 		player.change_state(player.swimming_state)
+	
+	# Decrease jump buffer timer over time
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta

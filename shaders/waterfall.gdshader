@@ -24,7 +24,7 @@ void fragment() {
 
     // Create cascading strips (more blue, less highlight)
     float strip_position = mod(uv.y / strip_spacing, 1.0);
-    float stripe = step(highlight_ratio, strip_position); 
+    float stripe = step(highlight_ratio, strip_position);
 
     // Blend colors for alternating horizontal strips
     vec4 final_color = mix(highlight_color, water_color, stripe);

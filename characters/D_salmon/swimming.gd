@@ -40,7 +40,9 @@ func swim_movement(delta):
 	# Apply Vertical Movement
 	if direction.y < 0:  # Moving up
 		player.velocity.y = move_toward(player.velocity.y, direction.y * swim_speed, acceleration * delta)
-	else:  # No upward input = apply sinking effect
+	elif direction.y > 0:  # Moving down faster than sink speed
+		player.velocity.y = move_toward(player.velocity.y, direction.y * swim_speed, acceleration * delta)
+	else:  # No input = apply constant sinking effect
 		player.velocity.y = move_toward(player.velocity.y, sink_speed, deceleration * delta)
 	
 	# Apply leftward drift force while in water
