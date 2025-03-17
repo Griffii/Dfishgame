@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvy50cse08105"]
+[gd_scene load_steps=7 format=3 uid="uid://dvy50cse08105"]
 
 [ext_resource type="Script" path="res://characters/D_salmon/salmon_player.gd" id="1_bf82l"]
 [ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/D_salmon/salmon_1.png" id="1_lj6rk"]
+[ext_resource type="Script" path="res://characters/D_salmon/player_state.gd" id="3_lknue"]
+[ext_resource type="Script" path="res://characters/D_salmon/swimming.gd" id="4_57cug"]
+[ext_resource type="Script" path="res://characters/D_salmon/flopping.gd" id="5_e5lup"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2acp"]
 radius = 8.0
@@ -25,3 +28,12 @@ zoom = Vector2(3, 3)
 limit_left = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="PlayerState" type="Node" parent="."]
+script = ExtResource("3_lknue")
+
+[node name="Swimming" type="Node" parent="PlayerState"]
+script = ExtResource("4_57cug")
+
+[node name="Flopping" type="Node" parent="PlayerState"]
+script = ExtResource("5_e5lup")
