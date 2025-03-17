@@ -1,14 +1,15 @@
 extends PlayerState
 
 @export var jump_force: float = -500.0  # Strength of jump when flopping
-@export var gravity: float = 900.0  # Gravity when out of water
-@export var acceleration: float = 400.0  # How fast the fish speeds up in air
+@export var gravity: float = 980.0  # Gravity when out of water
+@export var acceleration: float = 200.0  # How fast the fish speeds up in air
 @export var deceleration: float = 300.0  # How fast the fish slows down in air
-@export var max_fall_speed: float = 600.0  # Cap falling speed
+@export var max_fall_speed: float = 500.0  # Cap falling speed
 @export var max_air_speed: float = 100.0  # Maximum air speed
-@export var ground_friction: float = 500.0  # Strong deceleration on landing
+@export var ground_friction: float = 700.0  # Strong deceleration on landing
 @export var jump_buffer_time: float = 0.2  # Allows buffering jumps before landing
-@export var min_jump_force: float = -200.0  # Minimum jump force for short jumps
+@export var min_jump_force: float = -50.0  # Minimum jump force for short jumps
+@export var rotation_speed: float = 300.0  # Degrees per second rotation in air
 
 var jump_held: bool = false  # Tracks if jump key is still held
 var jump_buffer_timer: float = 0.0  # Timer to track buffered jump input
@@ -51,6 +52,10 @@ func flopping(delta):
 		# Apply air deceleration when no input
 		player.velocity.x = move_toward(player.velocity.x, 0, deceleration * delta)
 	
+	# Apply Rotation While in Air
+	if not player.is_on_floor():
+		player.rotation_degrees += direction * rotation_speed * delta  # Rotate based on direction
+	
 	# Instant deceleration when hitting the ground
 	if player.is_on_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0, ground_friction * delta)
@@ -66,9 +71,10 @@ func flopping(delta):
 			player.velocity.y = jump_force  # Launch again
 			jump_held = true  # Reset jump buffer tracking
 	
+	#### No directional control. You're a dang fish ############
 	# Flip horizontally when moving left or right
-	if player.facing_direction != 0:
-		player.sprite.flip_h = player.facing_direction < 0  # True if left, False if right
+	#if player.facing_direction != 0:
+		#player.sprite.flip_h = player.facing_direction < 0  # True if left, False if right
 	
 	# Return to swimming if back in water
 	if player.is_in_water:
