@@ -3,7 +3,7 @@ extends PlayerState
 @export var swim_speed: float = 200.0
 @export var acceleration: float = 800.0
 @export var deceleration: float = 600.0
-@export var waterfall_boost: float = 100.0  # Extra push when swimming up waterfalls
+@export var waterfall_boost: float = 150.0  # Extra push when swimming up waterfalls
 @export var sink_speed: float = 30.0             # How fast the fish sinks
 @export var drift_speed: float = -60.0           # Leftward drift speed in water
 
