@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://bmeaikjs2u4v3"]
+[gd_scene load_steps=22 format=4 uid="uid://bmeaikjs2u4v3"]
 
 [ext_resource type="Script" path="res://scripts/water.gd" id="1_cyb4b"]
 [ext_resource type="Texture2D" uid="uid://cj3unnxsp77oo" path="res://assets/tile sets/Basic_Shapes_Gray_Tileset.png" id="1_doyh8"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_a71aq"]
 [ext_resource type="Texture2D" uid="uid://cwjkljjxdpdck" path="res://assets/reference_images/Level1_WorldDraft_01.png" id="2_fwr8e"]
+[ext_resource type="Script" path="res://scripts/waterfall.gd" id="3_7ntlp"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="3_fn6mp"]
+[ext_resource type="Shader" path="res://shaders/waterfall_03.gdshader" id="4_k4j7l"]
+[ext_resource type="Texture2D" uid="uid://b71kpgnuibd2r" path="res://assets/water/Test_waterfall_01.png" id="4_kujh1"]
 [ext_resource type="Texture2D" uid="uid://f0knslbjjdyv" path="res://assets/tile sets/Basic_Shapes_Green_Tileset.png" id="5_eykup"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="7_v0e2l"]
 
@@ -27,6 +30,17 @@ size = Vector2(146.014, 51.3864)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4dh"]
 size = Vector2(14.2658, 23.0294)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5y5i8"]
+shader = ExtResource("4_k4j7l")
+shader_parameter/flow_speed = 0.4
+shader_parameter/noise_intensity = 0.3
+shader_parameter/noise_scale = 5.0
+shader_parameter/edge_wiggle_amplitude = 0.03
+shader_parameter/edge_wiggle_frequency = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2drk"]
+size = Vector2(168, 751)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eypfl"]
 texture = ExtResource("1_doyh8")
@@ -470,6 +484,22 @@ position = Vector2(10.07, 16.8424)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fq4dh")
 
+[node name="Waterfall" type="Node2D" parent="Water_Container" groups=["water"]]
+script = ExtResource("3_7ntlp")
+
+[node name="TestWaterfall01" type="Sprite2D" parent="Water_Container/Waterfall"]
+modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("ShaderMaterial_5y5i8")
+position = Vector2(6051, -675)
+texture = ExtResource("4_kujh1")
+
+[node name="WaterArea" type="Area2D" parent="Water_Container/Waterfall"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Waterfall/WaterArea"]
+position = Vector2(6048, -698.5)
+shape = SubResource("RectangleShape2D_e2drk")
+
 [node name="World Reference" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(3072, -1024)
@@ -488,11 +518,15 @@ tile_set = SubResource("TileSet_lubmo")
 [node name="D_Salmon" parent="." instance=ExtResource("3_fn6mp")]
 position = Vector2(171, -369)
 
-[node name="Coin" parent="." instance=ExtResource("7_v0e2l")]
+[node name="Coin_Container" type="Node" parent="."]
+
+[node name="Coin" parent="Coin_Container" instance=ExtResource("7_v0e2l")]
 position = Vector2(2514, -837)
 
-[node name="Coin2" parent="." instance=ExtResource("7_v0e2l")]
+[node name="Coin2" parent="Coin_Container" instance=ExtResource("7_v0e2l")]
+z_index = -1
 position = Vector2(3712, -183)
 
-[node name="Coin3" parent="." instance=ExtResource("7_v0e2l")]
-position = Vector2(5998, -676)
+[node name="Coin3" parent="Coin_Container" instance=ExtResource("7_v0e2l")]
+z_index = -1
+position = Vector2(5958, -681)

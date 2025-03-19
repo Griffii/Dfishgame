@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvy50cse08105"]
+[gd_scene load_steps=8 format=3 uid="uid://dvy50cse08105"]
 
 [ext_resource type="Script" path="res://characters/D_salmon/salmon_player.gd" id="1_bf82l"]
 [ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/D_salmon/salmon_1.png" id="1_lj6rk"]
@@ -9,6 +9,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2acp"]
 radius = 8.0
 height = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7v3sr"]
+radius = 9.0
 
 [node name="D_Salmon" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_bf82l")
@@ -36,3 +39,9 @@ script = ExtResource("4_57cug")
 
 [node name="Flopping" type="Node" parent="PlayerState"]
 script = ExtResource("5_e5lup")
+
+[node name="Water_Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Detector"]
+position = Vector2(21, 0)
+shape = SubResource("CircleShape2D_7v3sr")
