@@ -1,15 +1,16 @@
 extends PlayerState
 
-@export var swim_speed: float = 200.0
+@export var swim_speed: float = 300.0
 @export var acceleration: float = 800.0
 @export var deceleration: float = 600.0
-@export var waterfall_boost: float = 150.0  # Extra push when swimming up waterfalls
-@export var sink_speed: float = 30.0        # How fast the fish sinks
+@export var waterfall_boost: float = 300.0  # Extra push when swimming up waterfalls
+@export var jump_boost: float = -400.00     # Boost upon breaching the water (extra jump height)
+@export var sink_speed: float = 40.0        # How fast the fish sinks
 @export var drift_speed: float = -60.0      # Leftward drift speed in water
-@export var rotation_recovery_speed: float = 200.0  # Speed of rotation reset
+@export var rotation_recovery_speed: float = 250.0  # Speed of rotation reset
 
 func enter():
-	player.velocity = Vector2.ZERO  # Reset velocity when entering water
+	player.velocity = player.velocity * 0.8  # Slow velocity when entering water
 
 func physics_process(delta):
 	swim_movement(delta)
@@ -54,7 +55,7 @@ func swim_movement(delta):
 	
 	# Jump boost when breaching water
 	if player.just_exited_water:
-		player.velocity.y = -300  # Apply jump boost
+		player.velocity.y = jump_boost  # Apply jump boost
 		player.change_state(player.flopping_state)  # Switch to flopping state
 	
 	# Flip horizontally when moving left or right

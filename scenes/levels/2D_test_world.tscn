@@ -368,20 +368,24 @@ use_kinematic_bodies = true
 [node name="Foreground Trees" type="Node" parent="."]
 
 [node name="Obj0002Layer-4" type="Sprite2D" parent="Foreground Trees"]
+visible = false
 z_index = 5
 position = Vector2(1793, -369)
 texture = ExtResource("4_8p3oj")
 
 [node name="Obj0002Layer-3" type="Sprite2D" parent="Foreground Trees"]
+visible = false
 z_index = 5
 position = Vector2(1762, -369)
 texture = ExtResource("4_8p3oj")
 
 [node name="Obj0021Layer-22" type="Sprite2D" parent="Foreground Trees"]
+visible = false
 position = Vector2(976, -267)
 texture = ExtResource("11_s3730")
 
 [node name="Obj0022Layer-23" type="Sprite2D" parent="Foreground Trees"]
+visible = false
 position = Vector2(232, -303)
 texture = ExtResource("12_at17r")
 
