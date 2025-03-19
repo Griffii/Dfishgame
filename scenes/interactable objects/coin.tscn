@@ -53,8 +53,8 @@ animations = [{
 [node name="Coin" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bd421")
 animation = &"Spin"
 autoplay = "Spin"
-frame_progress = 0.87056
+frame_progress = 0.588786
