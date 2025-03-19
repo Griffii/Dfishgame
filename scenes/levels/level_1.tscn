@@ -424,7 +424,6 @@ scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water1/WaterArea"]
 position = Vector2(44.2658, 32.5676)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ye4d1")
 
 [node name="Water2" type="Node2D" parent="Water_Container" groups=["water"]]
@@ -443,7 +442,6 @@ scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water2/WaterArea"]
 position = Vector2(32.967, 32.138)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yhsfr")
 
 [node name="Water3" type="Node2D" parent="Water_Container" groups=["water"]]
@@ -462,7 +460,6 @@ scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water3/WaterArea"]
 position = Vector2(72.3478, 31.8802)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tj3q0")
 
 [node name="Water4" type="Node2D" parent="Water_Container" groups=["water"]]
@@ -481,7 +478,6 @@ scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water4/WaterArea"]
 position = Vector2(10.07, 16.8424)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fq4dh")
 
 [node name="Waterfall" type="Node2D" parent="Water_Container" groups=["water"]]

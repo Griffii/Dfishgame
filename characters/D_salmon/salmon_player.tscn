@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvy50cse08105"]
+[gd_scene load_steps=10 format=3 uid="uid://dvy50cse08105"]
 
 [ext_resource type="Script" path="res://characters/D_salmon/salmon_player.gd" id="1_bf82l"]
 [ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/D_salmon/salmon_1.png" id="1_lj6rk"]
 [ext_resource type="Script" path="res://characters/D_salmon/player_state.gd" id="3_lknue"]
 [ext_resource type="Script" path="res://characters/D_salmon/swimming.gd" id="4_57cug"]
 [ext_resource type="Script" path="res://characters/D_salmon/flopping.gd" id="5_e5lup"]
+[ext_resource type="Script" path="res://characters/D_salmon/dead.gd" id="6_q07fi"]
+[ext_resource type="Script" path="res://characters/D_salmon/dry_out_overlay.gd" id="7_ttsac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2acp"]
 radius = 8.0
@@ -24,6 +26,12 @@ vframes = 10
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g2acp")
 
+[node name="Water_Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Detector"]
+position = Vector2(21, 0)
+shape = SubResource("CircleShape2D_7v3sr")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -36)
 limit_left = 0
@@ -40,8 +48,17 @@ script = ExtResource("4_57cug")
 [node name="Flopping" type="Node" parent="PlayerState"]
 script = ExtResource("5_e5lup")
 
-[node name="Water_Detector" type="Area2D" parent="."]
+[node name="Dead" type="Node" parent="PlayerState"]
+script = ExtResource("6_q07fi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Detector"]
-position = Vector2(21, 0)
-shape = SubResource("CircleShape2D_7v3sr")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DryOutOverlay" type="ColorRect" parent="CanvasLayer"]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_ttsac")
