@@ -42,7 +42,7 @@ shader_parameter/edge_wiggle_frequency = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2drk"]
 size = Vector2(168, 751)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eypfl"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fov6l"]
 texture = ExtResource("1_doyh8")
 9:0/0 = 0
 10:0/0 = 0
@@ -257,7 +257,7 @@ texture = ExtResource("1_doyh8")
 
 [sub_resource type="TileSet" id="TileSet_4df1v"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_eypfl")
+sources/0 = SubResource("TileSetAtlasSource_fov6l")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a5mgn"]
 texture = ExtResource("5_eykup")
