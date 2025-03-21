@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://rgehasl5rldh"]
+[gd_scene load_steps=28 format=4 uid="uid://rgehasl5rldh"]
 
 [ext_resource type="Texture2D" uid="uid://cl1oaujhx2l7d" path="res://assets/tile sets/BackDirt_Tiles_2D_Set01.png" id="1_7ddn7"]
 [ext_resource type="Texture2D" uid="uid://dg5rpenqi5mx0" path="res://assets/sky boxes/Sky.png" id="1_71e2q"]
@@ -11,8 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cbc44welcsbuj" path="res://assets/plants/obj_0002_Layer-3.png" id="4_8p3oj"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="4_x0vas"]
 [ext_resource type="Texture2D" uid="uid://b54b6fmt3hhsl" path="res://assets/plants/obj_0000_Layer-1.png" id="5_psblv"]
-[ext_resource type="Shader" path="res://shaders/waterfall_02.gdshader" id="6_1x68k"]
-[ext_resource type="Script" path="res://scripts/waterfall.gd" id="6_5rcx1"]
+[ext_resource type="Script" path="res://scenes/water_bodies/water_fall/waterfall.gd" id="6_5rcx1"]
 [ext_resource type="Texture2D" uid="uid://bngqksbddgxfo" path="res://assets/tile sets/FrontDirt_Tiles_2D_Set02.png" id="7_ltuo0"]
 [ext_resource type="Texture2D" uid="uid://oayvkj7gi74s" path="res://assets/plants/obj_0021_Layer-22.png" id="11_s3730"]
 [ext_resource type="Texture2D" uid="uid://br6v0pllj50y1" path="res://assets/plants/obj_0022_Layer-23.png" id="12_at17r"]
@@ -277,17 +276,6 @@ shader_parameter/wave_height_pixels = 10.0
 size = Vector2(40, 33.813)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rv0pv"]
-shader = ExtResource("6_1x68k")
-shader_parameter/time_scale = 3.0
-shader_parameter/wave_amplitude = 0.03
-shader_parameter/wave_frequency = 10.0
-shader_parameter/water_color = Vector4(0, 0.4, 1, 0.6)
-shader_parameter/highlight_color = Vector4(1, 1, 1, 0.5)
-shader_parameter/wave_height_pixels = 20.0
-shader_parameter/flow_speed = 1.5
-shader_parameter/stripe_spacing = 0.2
-shader_parameter/highlight_ratio = 0.3
-shader_parameter/gradient_blend = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llf5h"]
 size = Vector2(121.314, 16.3891)

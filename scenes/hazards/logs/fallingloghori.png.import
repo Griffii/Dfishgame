@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxjv187y4n26p"
-path="res://.godot/imported/fallinglogvert.png-76657fa368df55f9032b85bbd81527bd.ctex"
+uid="uid://sdolyacta8x3"
+path="res://.godot/imported/fallingloghori.png-6fad403219de1e7aaab35868c8e0875a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logs/fallinglogvert.png"
-dest_files=["res://.godot/imported/fallinglogvert.png-76657fa368df55f9032b85bbd81527bd.ctex"]
+source_file="res://scenes/hazards/logs/fallingloghori.png"
+dest_files=["res://.godot/imported/fallingloghori.png-6fad403219de1e7aaab35868c8e0875a.ctex"]
 
 [params]
 

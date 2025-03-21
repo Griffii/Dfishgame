@@ -1,6 +1,6 @@
 extends Node2D
 
-var log_scene = preload("res://assets/logs/fallinglogh.tscn")  # Adjust path as needed
+var log_scene = preload("res://scenes/hazards/logs/fallinglogh.tscn")  # Adjust path as needed
 
 @export var spawn_interval: float = 2.0
 @export var spawn_position_x: float = 0.0
