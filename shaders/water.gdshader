@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform float time_scale = 3.0;  // Speed of wave motion
 uniform float wave_amplitude = 10.0;  // Fixed wave height in pixels
 uniform float wave_frequency = 75.0;  // Number of waves across the screen
-uniform vec4 water_color = vec4(0.0, 0.4, 0.8, 0.5);  // Semi-transparent water color
+uniform vec4 water_color = vec4(0.0, 0.4, 0.8, 0.7);  // Semi-transparent water color
 uniform float wave_height_pixels = 20.0;  // Fixed height for the wave effect in pixels
 
 void fragment() {
