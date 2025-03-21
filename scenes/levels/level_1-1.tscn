@@ -1,35 +1,17 @@
-[gd_scene load_steps=22 format=4 uid="uid://bmeaikjs2u4v3"]
+[gd_scene load_steps=21 format=4 uid="uid://bmeaikjs2u4v3"]
 
-[ext_resource type="Script" path="res://scripts/water.gd" id="1_746bw"]
-[ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_vu0wc"]
+[ext_resource type="Script" path="res://scenes/levels/level_1_1.gd" id="1_3f8c4"]
+[ext_resource type="PackedScene" uid="uid://08kc2b2smy51" path="res://scenes/water_bodies/water_body/water_body.tscn" id="1_dwjuh"]
 [ext_resource type="Script" path="res://scenes/water_bodies/water_fall/waterfall.gd" id="3_5f7ac"]
 [ext_resource type="Shader" path="res://shaders/waterfall_03.gdshader" id="4_k8sur"]
 [ext_resource type="Texture2D" uid="uid://b71kpgnuibd2r" path="res://assets/water/Test_waterfall_01.png" id="5_hqfb5"]
+[ext_resource type="FontFile" uid="uid://drimirxkyao5u" path="res://assets/fonts/PixelOperator8.ttf" id="6_p0xra"]
 [ext_resource type="Texture2D" uid="uid://cwjkljjxdpdck" path="res://assets/reference_images/Level1_WorldDraft_01.png" id="6_uybfq"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="7_jl807"]
 [ext_resource type="Texture2D" uid="uid://cj3unnxsp77oo" path="res://assets/tile sets/Basic_Shapes_Gray_Tileset.png" id="7_q7o86"]
 [ext_resource type="Texture2D" uid="uid://f0knslbjjdyv" path="res://assets/tile sets/Basic_Shapes_Green_Tileset.png" id="8_4b8bp"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="9_a27lh"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="10_pog3e"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_01rrk"]
-shader = ExtResource("2_vu0wc")
-shader_parameter/time_scale = 2.0
-shader_parameter/wave_amplitude = 10.0
-shader_parameter/wave_frequency = 15.0
-shader_parameter/water_color = Vector4(0, 0.4, 0.8, 0.6)
-shader_parameter/wave_height_pixels = 10.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye4d1"]
-size = Vector2(90.5696, 52.7613)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhsfr"]
-size = Vector2(63.177, 51.5583)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj3q0"]
-size = Vector2(146.014, 51.3864)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4dh"]
-size = Vector2(14.2658, 23.0294)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5y5i8"]
 shader = ExtResource("4_k8sur")
@@ -41,6 +23,17 @@ shader_parameter/edge_wiggle_frequency = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2drk"]
 size = Vector2(168, 751)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vaqc"]
+shader = ExtResource("7_jl807")
+shader_parameter/time_scale = 2.0
+shader_parameter/wave_amplitude = 10.0
+shader_parameter/wave_frequency = 15.0
+shader_parameter/water_color = Vector4(0, 0.4, 0.8, 0.6)
+shader_parameter/wave_height_pixels = 10.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx0q0"]
+size = Vector2(24.2158, 21.8263)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fov6l"]
 texture = ExtResource("7_q7o86")
@@ -405,80 +398,19 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_a5mgn")
 
 [node name="Level 1-1" type="Node2D"]
+script = ExtResource("1_3f8c4")
 
 [node name="Water_Container" type="Node" parent="."]
 
-[node name="Water1" type="Node2D" parent="Water_Container" groups=["water"]]
-position = Vector2(678, -351)
-script = ExtResource("1_746bw")
+[node name="Water_Body" parent="Water_Container" groups=["water"] instance=ExtResource("1_dwjuh")]
+position = Vector2(654, -316)
+spring_number = 170
+depth = 600
 
-[node name="ColorRect" type="ColorRect" parent="Water_Container/Water1"]
-material = SubResource("ShaderMaterial_01rrk")
-offset_left = -16.0
-offset_top = 27.0
-offset_right = 1505.0
-offset_bottom = 344.0
-
-[node name="WaterArea" type="Area2D" parent="Water_Container/Water1"]
-scale = Vector2(16.6833, 5.81866)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water1/WaterArea"]
-position = Vector2(44.2658, 32.5676)
-shape = SubResource("RectangleShape2D_ye4d1")
-
-[node name="Water2" type="Node2D" parent="Water_Container" groups=["water"]]
-position = Vector2(2378, -361)
-script = ExtResource("1_746bw")
-
-[node name="ColorRect" type="ColorRect" parent="Water_Container/Water2"]
-material = SubResource("ShaderMaterial_01rrk")
-offset_left = 3.0
-offset_top = 27.0
-offset_right = 1002.0
-offset_bottom = 344.0
-
-[node name="WaterArea" type="Area2D" parent="Water_Container/Water2"]
-scale = Vector2(16.6833, 5.81866)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water2/WaterArea"]
-position = Vector2(32.967, 32.138)
-shape = SubResource("RectangleShape2D_yhsfr")
-
-[node name="Water3" type="Node2D" parent="Water_Container" groups=["water"]]
-position = Vector2(3628, -363)
-script = ExtResource("1_746bw")
-
-[node name="ColorRect" type="ColorRect" parent="Water_Container/Water3"]
-material = SubResource("ShaderMaterial_01rrk")
-offset_left = 3.0
-offset_top = 27.0
-offset_right = 2437.0
-offset_bottom = 344.0
-
-[node name="WaterArea" type="Area2D" parent="Water_Container/Water3"]
-scale = Vector2(16.6833, 5.81866)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water3/WaterArea"]
-position = Vector2(72.3478, 31.8802)
-shape = SubResource("RectangleShape2D_tj3q0")
-
-[node name="Water4" type="Node2D" parent="Water_Container" groups=["water"]]
-position = Vector2(3947, -542)
-script = ExtResource("1_746bw")
-
-[node name="ColorRect" type="ColorRect" parent="Water_Container/Water4"]
-material = SubResource("ShaderMaterial_01rrk")
-offset_left = 23.0
-offset_top = 27.0
-offset_right = 305.0
-offset_bottom = 172.0
-
-[node name="WaterArea" type="Area2D" parent="Water_Container/Water4"]
-scale = Vector2(16.6833, 5.81866)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Water4/WaterArea"]
-position = Vector2(10.07, 16.8424)
-shape = SubResource("RectangleShape2D_fq4dh")
+[node name="Water_Body2" parent="Water_Container" groups=["water"] instance=ExtResource("1_dwjuh")]
+position = Vector2(3982, -505)
+spring_number = 9
+depth = 140
 
 [node name="Waterfall" type="Node2D" parent="Water_Container" groups=["water"]]
 script = ExtResource("3_5f7ac")
@@ -496,6 +428,32 @@ texture = ExtResource("5_hqfb5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/Waterfall/WaterArea"]
 position = Vector2(6048, -698.5)
 shape = SubResource("RectangleShape2D_e2drk")
+
+[node name="TheEnd" type="Node2D" parent="Water_Container"]
+position = Vector2(5987, -1192)
+
+[node name="Label" type="Label" parent="Water_Container/TheEnd"]
+offset_left = -111.0
+offset_top = 8.0
+offset_right = 428.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("6_p0xra")
+theme_override_font_sizes/font_size = 64
+text = "THE END"
+
+[node name="ColorRect" type="ColorRect" parent="Water_Container/TheEnd"]
+material = SubResource("ShaderMaterial_5vaqc")
+offset_left = -126.0
+offset_top = -29.0
+offset_right = 278.0
+offset_bottom = 99.0
+
+[node name="EndArea" type="Area2D" parent="Water_Container/TheEnd"]
+scale = Vector2(16.6833, 5.81866)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/TheEnd/EndArea"]
+position = Vector2(4.49551, 6.10095)
+shape = SubResource("RectangleShape2D_qx0q0")
 
 [node name="World Reference" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.392157)
@@ -529,3 +487,4 @@ z_index = -1
 position = Vector2(5958, -681)
 
 [connection signal="item_rect_changed" from="Water_Container/Waterfall/TestWaterfall01" to="Water_Container/Waterfall/TestWaterfall01" method="_on_item_rect_changed"]
+[connection signal="body_entered" from="Water_Container/TheEnd/EndArea" to="." method="_on_end_area_body_entered"]
