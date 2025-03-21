@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvy50cse08105"]
+[gd_scene load_steps=11 format=3 uid="uid://dvy50cse08105"]
 
 [ext_resource type="Script" path="res://characters/D_salmon/salmon_player.gd" id="1_bf82l"]
 [ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/D_salmon/salmon_1.png" id="1_lj6rk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://characters/D_salmon/swimming.gd" id="4_57cug"]
 [ext_resource type="Script" path="res://characters/D_salmon/flopping.gd" id="5_e5lup"]
 [ext_resource type="Script" path="res://characters/D_salmon/dead.gd" id="6_q07fi"]
+[ext_resource type="PackedScene" uid="uid://ctincgfe3f2lc" path="res://scenes/menus/in_game_ui.tscn" id="7_nf6s4"]
 [ext_resource type="Script" path="res://characters/D_salmon/dry_out_overlay.gd" id="7_ttsac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2acp"]
@@ -52,6 +53,9 @@ script = ExtResource("5_e5lup")
 script = ExtResource("6_q07fi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="In_Game_UI" parent="CanvasLayer" instance=ExtResource("7_nf6s4")]
+z_index = 100
 
 [node name="DryOutOverlay" type="ColorRect" parent="CanvasLayer"]
 z_index = 100

@@ -36,6 +36,9 @@ var bottom = target_height + depth
 @onready var collisionShape = $WaterArea/CollisionShape2D
 @onready var water_body_area = $WaterArea
 
+# Reference to water splash particle generator
+#@onready var water_splash = $Water_Splash/GPUParticles2D
+
 #reference to the particle we just created
 #@onready var splash_particle = preload("res://scenes/splash_particles/splash_particles.tscn")
 
