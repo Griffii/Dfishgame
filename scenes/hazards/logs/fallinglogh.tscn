@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3snrjqxpbhdq"]
+
+[ext_resource type="Script" path="res://scenes/hazards/logs/fallinglogh.gd" id="1_p84r6"]
+[ext_resource type="Texture2D" uid="uid://sdolyacta8x3" path="res://scenes/hazards/logs/fallingloghori.png" id="1_prlcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0qi"]
+size = Vector2(127, 33)
+
+[node name="fallinglogh" type="RigidBody2D"]
+script = ExtResource("1_p84r6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(1.31707, 1.09146)
+texture = ExtResource("1_prlcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 1.5)
+shape = SubResource("RectangleShape2D_uw0qi")

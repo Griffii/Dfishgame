@@ -337,7 +337,7 @@ tile_map_data = PackedByteArray("AAAOAAcAAAAJAAEAAAAOAAYAAAAJAAEAAAANAAYAAAAJAAE
 tile_set = SubResource("TileSet_iw0yw")
 
 [node name="D_Salmon" parent="." instance=ExtResource("6_u6ulb")]
-position = Vector2(1963, -1209)
+position = Vector2(136, -389)
 
 [node name="Coin_Container" type="Node" parent="."]
 
