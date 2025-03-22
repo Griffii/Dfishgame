@@ -12,7 +12,7 @@ signal splash
 
 @onready var collision = $Area2D/CollisionShape2D
 @onready var water_splash = $Water_Splash/ClipArea/GPUParticles2D
-@onready var splash_sfx_template = $Audio_Controller/splash_sfx  # used as a template (stream, bus, etc.)
+@onready var splash_sfx_template = $Audio_Controller/splash_sfx
 
 ## This function applies Hooke's Law force to the spring
 func water_update(spring_constant, dampening):

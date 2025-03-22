@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=4 uid="uid://bmeaikjs2u4v3"]
+[gd_scene load_steps=24 format=4 uid="uid://bmeaikjs2u4v3"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1_1.gd" id="1_3f8c4"]
 [ext_resource type="PackedScene" uid="uid://08kc2b2smy51" path="res://scenes/water_bodies/water_body/water_body.tscn" id="1_dwjuh"]
+[ext_resource type="Texture2D" uid="uid://qaxklh6n6n6u" path="res://assets/reference_images/Level1_WorldDraft_03.png" id="2_h41fp"]
 [ext_resource type="TileSet" uid="uid://cax0px7nnqrrc" path="res://assets/tile sets/grass_tileset_01.tres" id="4_3gwom"]
 [ext_resource type="Texture2D" uid="uid://iktienfgq2mt" path="res://assets/objects/Sign_01.png" id="5_n7ddl"]
 [ext_resource type="Texture2D" uid="uid://df2od7lulvw5" path="res://assets/plants/Stump_01.png" id="6_25gvl"]
-[ext_resource type="Texture2D" uid="uid://dughtdgnodor3" path="res://assets/reference_images/Level1_WorldDraft_02.png" id="6_f624o"]
 [ext_resource type="FontFile" uid="uid://drimirxkyao5u" path="res://assets/fonts/PixelOperator8.ttf" id="6_p0xra"]
 [ext_resource type="Texture2D" uid="uid://ir2cdgcnxli3" path="res://assets/plants/Tree_01.png" id="7_1blf1"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="7_jl807"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="9_a27lh"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="10_pog3e"]
 [ext_resource type="Texture2D" uid="uid://cgldju4nf37ev" path="res://assets/plants/Tree_02.png" id="12_m8har"]
+[ext_resource type="Texture2D" uid="uid://dg5rpenqi5mx0" path="res://assets/sky boxes/Sky.png" id="15_xnpcm"]
+[ext_resource type="Script" path="res://scripts/cloud_scroller.gd" id="16_dhr3c"]
+[ext_resource type="Texture2D" uid="uid://dexjkerd2meka" path="res://assets/sky boxes/Clouds1.png" id="17_8vw0p"]
+[ext_resource type="Texture2D" uid="uid://dgx2wc4u0c2ja" path="res://assets/sky boxes/Tiling_Trees.png" id="18_77i3q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fov6l"]
 texture = ExtResource("7_q7o86")
@@ -250,10 +254,9 @@ size = Vector2(187, 48)
 script = ExtResource("1_3f8c4")
 
 [node name="World Reference" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.392157)
 z_index = -1
 position = Vector2(3072, -1024)
-texture = ExtResource("6_f624o")
+texture = ExtResource("2_h41fp")
 
 [node name="Ground_Tiles" type="TileMapLayer" parent="."]
 z_index = 1
@@ -266,7 +269,7 @@ tile_map_data = PackedByteArray("AAAqAOf/AAAJAAEAAAArAOf/AAABAAMAAAArAOj/AAAJAAE
 tile_set = ExtResource("4_3gwom")
 
 [node name="D_Salmon" parent="." instance=ExtResource("9_a27lh")]
-position = Vector2(173, -690)
+position = Vector2(168, -694)
 
 [node name="Water_Container" type="Node" parent="."]
 
@@ -293,6 +296,7 @@ theme_override_font_sizes/font_size = 64
 text = "THE END"
 
 [node name="ColorRect" type="ColorRect" parent="Water_Container/TheEnd"]
+visible = false
 material = SubResource("ShaderMaterial_5vaqc")
 offset_left = -126.0
 offset_top = -29.0
@@ -300,6 +304,7 @@ offset_right = 278.0
 offset_bottom = 99.0
 
 [node name="EndArea" type="Area2D" parent="Water_Container/TheEnd"]
+visible = false
 scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/TheEnd/EndArea"]
@@ -396,6 +401,74 @@ position = Vector2(4122, -562)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Container/Checkpoint_01/Area2D"]
 position = Vector2(5, 30)
 shape = SubResource("RectangleShape2D_iwln6")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -100
+
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
+position = Vector2(3484, -1346.5)
+scale = Vector2(5.44375, 3.7375)
+texture = ExtResource("15_xnpcm")
+
+[node name="CloudLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="CloudScroller" type="Node2D" parent="ParallaxBackground/CloudLayer"]
+script = ExtResource("16_dhr3c")
+
+[node name="Clouds1" type="Sprite2D" parent="ParallaxBackground/CloudLayer/CloudScroller"]
+z_index = -50
+position = Vector2(1171, -1344)
+texture = ExtResource("17_8vw0p")
+
+[node name="Clouds2" type="Sprite2D" parent="ParallaxBackground/CloudLayer/CloudScroller"]
+z_index = -50
+position = Vector2(2180, -644)
+texture = ExtResource("17_8vw0p")
+
+[node name="Clouds3" type="Sprite2D" parent="ParallaxBackground/CloudLayer/CloudScroller"]
+z_index = -50
+position = Vector2(3862, -1322)
+texture = ExtResource("17_8vw0p")
+
+[node name="Clouds4" type="Sprite2D" parent="ParallaxBackground/CloudLayer/CloudScroller"]
+z_index = -50
+position = Vector2(5478, -651)
+texture = ExtResource("17_8vw0p")
+
+[node name="TreesLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 25)
+motion_scale = Vector2(0.9, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/TreesLayer"]
+modulate = Color(0.784314, 0.784314, 0.784314, 1)
+custom_minimum_size = Vector2(4000, 0)
+offset_left = -3.0
+offset_top = -1181.0
+offset_right = 6978.0
+offset_bottom = -333.0
+texture = ExtResource("18_77i3q")
+stretch_mode = 1
+
+[node name="GroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/GroundLayer"]
+offset_left = 631.0
+offset_top = -4.0
+offset_right = 792.0
+offset_bottom = 36.0
+scale = Vector2(34.2558, -7.77589)
+color = Color(0.0744152, 0.248214, 0.229551, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground/GroundLayer"]
+offset_left = 3977.0
+offset_top = -366.0
+offset_right = 3985.0
+offset_bottom = -348.0
+scale = Vector2(34.2558, -7.77589)
+color = Color(0.0744152, 0.248214, 0.229551, 1)
 
 [connection signal="body_entered" from="Water_Container/TheEnd/EndArea" to="." method="_on_end_area_body_entered"]
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_01/Area2D" to="." method="_on_checkpoint_01_entered"]
