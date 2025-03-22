@@ -13,15 +13,22 @@ extends PlayerState
 
 var jump_held: bool = false  # Tracks if jump key is still held
 var jump_buffer_timer: float = 0.0  # Timer to track buffered jump input
+var was_on_floor = false
 
 func enter():
 	player.velocity.y = jump_force  # Apply jump force on entry
 	jump_held = true  # Start jump buffer tracking
 	jump_buffer_timer = 0.0  # Reset buffer timer
 
+
 func physics_process(delta):
 	flopping(delta)
 	player.move_and_slide()
+	
+	var on_floor = player.is_on_floor()
+	if on_floor && !was_on_floor:
+		player.play_landing_sound(player.velocity.y)
+	was_on_floor = on_floor
 
 func flopping(delta):
 	# Apply gravity

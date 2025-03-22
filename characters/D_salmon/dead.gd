@@ -2,15 +2,19 @@ extends PlayerState
 
 @export var gravity: float = 1200.0  # Gravity applied to the dead player
 @export var max_fall_speed: float = 800.0  # Terminal velocity
+@export var respawn_timer: Timer
+var is_flipped = false
 
 func enter():
-	pass
+	respawn_timer.start()
 
 func exit():
-	pass
-	# Reset the screen effect when leaving DeadState
-	#if player.dry_out_overlay:
-		#player.dry_out_overlay.update_effect(player.dry_out_time)  # Fully reset the overlay
+	# Reset sprite
+	player.sprite.flip_v = false
+	is_flipped = false
+	
+	if respawn_timer.is_stopped() == false:
+		respawn_timer.stop()
 
 func physics_process(delta):
 	# Apply gravity, making the player fall naturally
@@ -18,5 +22,12 @@ func physics_process(delta):
 	
 	player.move_and_slide()  # Let physics handle movementa
 	
-	# Optional: If needed, rotate the player slightly for dramatic effect
-	player.rotation_degrees = move_toward(player.rotation_degrees, 0, 100 * delta)  # Fall sideways
+	# Optional:Rrotate the player for dramatic effect
+	player.rotation_degrees = move_toward(player.rotation_degrees, 0, 100 * delta)
+	
+	# If laying flat and not already belly up, flip over - You dead b*tch
+	if player.rotation_degrees == 0 && !is_flipped:
+		player.sprite.flip_v = true
+		is_flipped = true
+	
+	##print("Timer: ", respawn_timer.time_left)

@@ -4,12 +4,6 @@ extends Control
 @export var pause_menu: MarginContainer
 @export var settings_menu: MarginContainer
 
-var root_node
-
-func set_scene_root(root):
-	if root is Node2D || root is Control || root is Node:
-		root_node = root
-		##print("Current root node is: ", root_node)
 
 func toggle_visibility(object):
 	object.visible = !object.visible

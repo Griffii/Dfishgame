@@ -30,8 +30,17 @@ color_ramp = SubResource("GradientTexture1D_67vgg")
 [node name="Water_Splash" type="Node2D"]
 modulate = Color(1, 1, 1, 0.470588)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="ClipArea" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -249.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 10.0
+color = Color(1, 1, 1, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ClipArea"]
 show_behind_parent = true
+position = Vector2(249, 250)
 emitting = false
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_snum0")
