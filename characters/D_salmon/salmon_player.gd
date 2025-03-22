@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var collision_shape_player: CollisionShape2D = $CollisionShape_Player
 @onready var water_detector: Area2D = $Water_Detector
 @onready var dry_out_overlay = $CanvasLayer/DryOutOverlay 
+@onready var game_ui  = $CanvasLayer/In_Game_UI
 @onready var swimming_state = $PlayerState/Swimming
 @onready var flopping_state = $PlayerState/Flopping
 @onready var dead_state = $PlayerState/Dead
@@ -19,14 +20,21 @@ var is_in_waterfall = false
 var is_in_current = false
 var just_exited_water = false
 var dry_timer: float = 0.0  # Tracks remaining time before death
+var is_paused = false
 ################################################################################
 
 func _ready() -> void:
+	##print("D Fish Spawned in!")
 	dry_timer = dry_out_time
 	change_state(flopping_state)
+	# Set root node for the UI menus
+	game_ui.set_scene_root(get_parent())
 
 
 func _physics_process(delta: float) -> void:
+	if is_paused:
+		return
+	
 	check_drying_status(delta)
 	# Call the process from the state machine
 	if current_state:
@@ -88,3 +96,7 @@ func check_drying_status(delta):
 func reset_drying_timer():
 	dry_timer = dry_out_time  # Reset timer to full
 	dry_out_overlay.update_effect(dry_timer) # Reset effect
+
+
+func toggle_paused():
+	is_paused = !is_paused

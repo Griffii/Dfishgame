@@ -54,15 +54,16 @@ script = ExtResource("6_q07fi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="In_Game_UI" parent="CanvasLayer" instance=ExtResource("7_nf6s4")]
-z_index = 100
+[node name="In_Game_UI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("7_nf6s4")]
+player = NodePath("../..")
 
 [node name="DryOutOverlay" type="ColorRect" parent="CanvasLayer"]
-z_index = 100
+z_index = 50
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_ttsac")
