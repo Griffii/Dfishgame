@@ -39,7 +39,10 @@ func _ready() -> void:
 	# Set root node for the UI menus
 	root_node = get_parent()
 	# Set camera right limit based on level - Add other limits ass levels recquire them
-	camera.limit_right = root_node.camera_right_limit
+	if root_node.camera_right_limit:
+		camera.limit_right = root_node.camera_right_limit
+	if root_node.camera_top_limit:
+		camera.limit_top = root_node.camera_top_limit
 
 
 func _physics_process(delta: float) -> void:
