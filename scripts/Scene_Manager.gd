@@ -31,7 +31,7 @@ func start_game():
 func _add_loading_screen(transition_type:String="no_transition"):
 	# using "no_in_transition" as the transition name when skipping a transition felt... weird
 	# dunno if this solution is better, but it's only one line so I can live with this one-off
-	# An alternative would be to store strating animations in a dictionary and swap them for the animation name
+	# An alternative would be to store starting animations in a dictionary and swap them for the animation name
 	# it removes this one-off, but adds a step elsewhere - all about preference.
 	_transition = "no_to_transition" if transition_type == "no_transition" else transition_type
 	_loading_screen = _loading_screen_scene.instantiate() as LoadingScreen

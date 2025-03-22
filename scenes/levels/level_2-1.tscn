@@ -325,7 +325,7 @@ spring_number = 19
 depth = 150
 
 [node name="Water_Body12" parent="Water_Container" groups=["water"] instance=ExtResource("3_23rgf")]
-position = Vector2(3119, -2265)
+position = Vector2(3114, -2265)
 spring_number = 15
 depth = 100
 
