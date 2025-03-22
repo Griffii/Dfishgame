@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgh5v3jwefyn8"
-path="res://.godot/imported/obj_0001_Layer-2.png-65c3285d06a9929e3adc9c71c006f299.ctex"
+uid="uid://dughtdgnodor3"
+path="res://.godot/imported/Level1_WorldDraft_02.png-497d943215043efd7f6d65fb80ce135b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/obj_0001_Layer-2.png"
-dest_files=["res://.godot/imported/obj_0001_Layer-2.png-65c3285d06a9929e3adc9c71c006f299.ctex"]
+source_file="res://assets/reference_images/Level1_WorldDraft_02.png"
+dest_files=["res://.godot/imported/Level1_WorldDraft_02.png-497d943215043efd7f6d65fb80ce135b.ctex"]
 
 [params]
 

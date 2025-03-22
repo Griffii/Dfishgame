@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbc44welcsbuj"
-path="res://.godot/imported/obj_0002_Layer-3.png-45d2d4e26495381bd4290319d35a32df.ctex"
+uid="uid://iktienfgq2mt"
+path="res://.godot/imported/Sign_01.png-6d5e628814da154649fc1c7c8ad47ba5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/obj_0002_Layer-3.png"
-dest_files=["res://.godot/imported/obj_0002_Layer-3.png-45d2d4e26495381bd4290319d35a32df.ctex"]
+source_file="res://assets/objects/Sign_01.png"
+dest_files=["res://.godot/imported/Sign_01.png-6d5e628814da154649fc1c7c8ad47ba5.ctex"]
 
 [params]
 
