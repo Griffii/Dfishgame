@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ix13dctgi08"
-path="res://.godot/imported/FrontDirt_Tiles_2D_Set01.png-9b20a62357da7ab32fdf8cb1c77e18f0.ctex"
+uid="uid://d3u55tilo2r7a"
+path="res://.godot/imported/Spikes_02.png-bded0b14d6fdce5b086580e76dc74e4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile sets/FrontDirt_Tiles_2D_Set01.png"
-dest_files=["res://.godot/imported/FrontDirt_Tiles_2D_Set01.png-9b20a62357da7ab32fdf8cb1c77e18f0.ctex"]
+source_file="res://scenes/hazards/spikes/Spikes_02.png"
+dest_files=["res://.godot/imported/Spikes_02.png-bded0b14d6fdce5b086580e76dc74e4c.ctex"]
 
 [params]
 

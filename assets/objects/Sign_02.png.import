@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bngqksbddgxfo"
-path="res://.godot/imported/FrontDirt_Tiles_2D_Set02.png-19f4120843d4e48870dd94d5b46d7892.ctex"
+uid="uid://523f3nthi3en"
+path="res://.godot/imported/Sign_02.png-d358a45b342d3a894750b978293465d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile sets/FrontDirt_Tiles_2D_Set02.png"
-dest_files=["res://.godot/imported/FrontDirt_Tiles_2D_Set02.png-19f4120843d4e48870dd94d5b46d7892.ctex"]
+source_file="res://assets/objects/Sign_02.png"
+dest_files=["res://.godot/imported/Sign_02.png-d358a45b342d3a894750b978293465d1.ctex"]
 
 [params]
 

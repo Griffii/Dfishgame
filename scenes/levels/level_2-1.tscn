@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://crjs20cnr1h2x"]
+[gd_scene load_steps=24 format=4 uid="uid://crjs20cnr1h2x"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_2_1.gd" id="1_oynd0"]
 [ext_resource type="Texture2D" uid="uid://cv81bhhgbcxxk" path="res://assets/reference_images/Level2_WorldDraft_04.png" id="2_7rbwj"]
-[ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_ggj8k"]
 [ext_resource type="PackedScene" uid="uid://08kc2b2smy51" path="res://scenes/water_bodies/water_body/water_body.tscn" id="3_23rgf"]
 [ext_resource type="TileSet" uid="uid://b6aq58nrlftbb" path="res://assets/tile sets/gray_tileset_01.tres" id="3_vufxu"]
 [ext_resource type="PackedScene" uid="uid://dp17i4behyrdh" path="res://scenes/platforms/cave/medium/medium_water_cave_plat_01.tscn" id="4_eysts"]
@@ -16,17 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://dexjkerd2meka" path="res://assets/sky boxes/Clouds1.png" id="14_6ft6g"]
 [ext_resource type="Script" path="res://scripts/cloud_scroller.gd" id="14_area4"]
 [ext_resource type="Texture2D" uid="uid://dgx2wc4u0c2ja" path="res://assets/sky boxes/Tiling_Trees.png" id="16_fe1fj"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dihx0"]
-shader = ExtResource("2_ggj8k")
-shader_parameter/time_scale = 2.0
-shader_parameter/wave_amplitude = 10.0
-shader_parameter/wave_frequency = 15.0
-shader_parameter/water_color = Vector4(0, 0.4, 0.8, 0.6)
-shader_parameter/wave_height_pixels = 10.0
+[ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="17_q6d5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl740"]
-size = Vector2(391, 121)
+size = Vector2(581, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpfjf"]
 size = Vector2(522, 20)
@@ -36,6 +28,15 @@ size = Vector2(432, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tswwu"]
 size = Vector2(751, 171)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8byl3"]
+shader = ExtResource("17_q6d5m")
+shader_parameter/sigma = 3.3
+
+[sub_resource type="Gradient" id="Gradient_2x0f8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dlhxe"]
+gradient = SubResource("Gradient_2x0f8")
 
 [node name="Level 2-1" type="Node2D"]
 script = ExtResource("1_oynd0")
@@ -72,17 +73,11 @@ theme_override_fonts/font = ExtResource("8_glcli")
 theme_override_font_sizes/font_size = 64
 text = "THE END"
 
-[node name="ColorRect" type="ColorRect" parent="Water_Container/TheEnd"]
-material = SubResource("ShaderMaterial_dihx0")
-offset_left = -126.0
-offset_top = -29.0
-offset_right = 278.0
-offset_bottom = 99.0
-
 [node name="EndArea" type="Area2D" parent="Water_Container/TheEnd"]
+position = Vector2(-1, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Container/TheEnd/EndArea"]
-position = Vector2(76.5, 36.5)
+position = Vector2(73.5, 36.5)
 shape = SubResource("RectangleShape2D_wl740")
 
 [node name="Water_Body" parent="Water_Container" groups=["water"] instance=ExtResource("3_23rgf")]
@@ -312,7 +307,7 @@ texture = ExtResource("14_6ft6g")
 position = Vector2(0, 25)
 motion_scale = Vector2(0.9, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/TreesLayer"]
+[node name="Trees" type="TextureRect" parent="ParallaxBackground/TreesLayer"]
 modulate = Color(0.784314, 0.784314, 0.784314, 1)
 custom_minimum_size = Vector2(4000, 0)
 offset_left = 1.0
@@ -321,6 +316,15 @@ offset_right = 4001.0
 offset_bottom = -375.0
 texture = ExtResource("16_fe1fj")
 stretch_mode = 1
+
+[node name="BlurShader" type="TextureRect" parent="ParallaxBackground/TreesLayer/Trees"]
+material = SubResource("ShaderMaterial_8byl3")
+layout_mode = 0
+offset_left = 3.0
+offset_top = -8.0
+offset_right = 3678.0
+offset_bottom = 853.0
+texture = SubResource("GradientTexture2D_dlhxe")
 
 [node name="GroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 

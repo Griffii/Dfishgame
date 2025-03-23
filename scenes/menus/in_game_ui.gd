@@ -8,7 +8,7 @@ extends Control
 func toggle_visibility(object):
 	object.visible = !object.visible
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		pause_game()
 
