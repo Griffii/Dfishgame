@@ -12,7 +12,7 @@ func _on_play_pressed() -> void:
 	# Switch to main scene
 	sfx_click.play()
 	#get_tree().change_scene_to_file("res://Levels/tutorial_level.tscn")
-	SceneManager.swap_scenes("res://scenes/levels/level_1-1.tscn", null, self, "no_transition")
+	SceneManager.swap_scenes("res://scenes/levels/tutorial_level.tscn", null, self, "no_transition")
 
 func _on_options_pressed() -> void:
 	sfx_click.play()

@@ -13,7 +13,7 @@ func _ready() -> void:
 	pass
 	##progress_bar.visible = false
 
-func start_transition(animation_name:String):
+func start_transition(_animation_name:String):
 	pass
 
 func finish_transition():
@@ -26,6 +26,6 @@ func _on_timer_timeout() -> void:
 	pass
 	#progress_bar.visible = true
 
-func update_bar(val:float) -> void:
+func update_bar(_val:float) -> void:
 	pass
 	#progress_bar.value = val

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp136v3iu0xo6"
-path="res://.godot/imported/Scenery_Background_01.png-f00b20e2f5c232bffdb9f281dc4433a6.ctex"
+uid="uid://df8ev7f0lyv28"
+path="res://.godot/imported/Blood_Drop.png-9e9a0905c508c287002c165e160dcfee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile sets/Scenery_Background_01.png"
-dest_files=["res://.godot/imported/Scenery_Background_01.png-f00b20e2f5c232bffdb9f281dc4433a6.ctex"]
+source_file="res://scenes/particles/blood/Blood_Drop.png"
+dest_files=["res://.godot/imported/Blood_Drop.png-9e9a0905c508c287002c165e160dcfee.ctex"]
 
 [params]
 

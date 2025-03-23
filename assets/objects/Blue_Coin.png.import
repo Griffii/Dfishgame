@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl1oaujhx2l7d"
-path="res://.godot/imported/BackDirt_Tiles_2D_Set01.png-f255976dd1007a5b72e721dad5630147.ctex"
+uid="uid://4itvlxgt5cvs"
+path="res://.godot/imported/Blue_Coin.png-a31f1f73cdefb743cad1314f76643f7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile sets/BackDirt_Tiles_2D_Set01.png"
-dest_files=["res://.godot/imported/BackDirt_Tiles_2D_Set01.png-f255976dd1007a5b72e721dad5630147.ctex"]
+source_file="res://assets/objects/Blue_Coin.png"
+dest_files=["res://.godot/imported/Blue_Coin.png-a31f1f73cdefb743cad1314f76643f7f.ctex"]
 
 [params]
 

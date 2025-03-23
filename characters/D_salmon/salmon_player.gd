@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var blood_splat : PackedScene
+@onready var blood_splatter = $Blood_Manager/Blood_Splatter/GPUParticles2D
+
 @onready var sprite: Sprite2D = $salmon_sprite  # Changed from Sprite2d cause this shit can move now
 @onready var collision_shape_player: CollisionShape2D = $CollisionShape_Player
 @onready var water_detector: Area2D = $Water_Detector
@@ -24,10 +27,12 @@ var is_in_current = false
 var just_exited_water = false
 var dry_timer: float = 0.0  # Tracks remaining time before death
 var is_paused = false
+var is_exploded = false
 ################################################################################
 
 ##### SFX ######################################################################
 @onready var splat_sfx_01: AudioStreamPlayer2D = $Audio_Controller/wet_splat_sfx_01
+@onready var death_splat_sfx :AudioStreamPlayer2D =$Audio_Controller/death_splat_sfx_01
 ################################################################################
 
 
@@ -115,6 +120,7 @@ func reset_drying_timer():
 	dry_timer = dry_out_time  # Reset timer to full
 	dry_out_overlay.update_effect(dry_timer) # Reset effect
 
+## Special func for landing sound to modulate with speed
 func play_landing_sound(velocity_y: float):
 	var landing = AudioStreamPlayer2D.new()
 	landing.stream = splat_sfx_01.stream
@@ -136,12 +142,71 @@ func play_landing_sound(velocity_y: float):
 	await get_tree().create_timer(landing.stream.get_length()).timeout
 	landing.queue_free()
 
+## Plays whatever sfx is passed to it at players location
+func play_sound(sfx: AudioStreamPlayer2D):
+	var sound = AudioStreamPlayer2D.new()
+	sound.stream = sfx.stream
+	sound.bus = sfx.bus
+	sound.global_position = global_position
+	
+	get_tree().root.add_child(sound)
+	sound.play()
+	
+	await get_tree().create_timer(sound.stream.get_length()).timeout
+	sound.queue_free()
 
 ## Logic for respawning player to a node location
 func respawn():
-	change_state(flopping_state)
 	reset_drying_timer()
+	is_exploded = false
 	global_position = root_node.current_checkpoint.position
+	change_state(flopping_state)
+
+
+func explode():
+	if !is_exploded:
+		sprite.hide()
+		
+		play_sound(death_splat_sfx)
+		# Call the blood splatter particle
+		blood_splatter.restart()
+		
+		is_exploded = true
+		
+		# In your death or blood effect function
+		var directions = [
+			Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN,
+			Vector2(-1, -1).normalized(), Vector2(1, -1).normalized(),
+			Vector2(-1, 1).normalized(), Vector2(1, 1).normalized()
+		]
+		
+		for dir in directions:
+			var query = PhysicsRayQueryParameters2D.create(global_position, global_position + dir * 64)
+			var space_state = get_world_2d().direct_space_state
+			var result = space_state.intersect_ray(query)
+			
+			if result:
+				var decal = blood_splat.instantiate()
+				decal.global_position = result.position
+				decal.rotation = randf() * TAU
+				decal.scale = Vector2.ONE * randf_range(0.5, 2.5)
+				
+				# Optional: attach decal to the surface it hit
+				if result.collider is Node:
+					result.collider.add_child(decal)
+				else:
+					get_tree().current_scene.add_child(decal)
+		
+		# Pause before moving player
+		await get_tree().create_timer(1.0).timeout
+		
+		# Respawn after exploding
+		respawn()
+		sprite.show()
+
+
+
+
 
 ## Logic for UI management
 func toggle_paused():

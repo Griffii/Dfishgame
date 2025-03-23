@@ -1,46 +1,46 @@
 [gd_scene load_steps=11 format=3 uid="uid://62ba11sm364a"]
 
-[ext_resource type="Texture2D" uid="uid://thutv36ptu5w" path="res://assets/objects/Coin.png" id="1_hbp7n"]
 [ext_resource type="Script" path="res://scenes/interactable objects/coin.gd" id="1_m7kpp"]
+[ext_resource type="Texture2D" uid="uid://4itvlxgt5cvs" path="res://assets/objects/Blue_Coin.png" id="2_lfuyr"]
 [ext_resource type="AudioStream" uid="uid://bkf5gdwbu832e" path="res://assets/sfx/coin.wav" id="3_7w3yo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5cpg"]
-atlas = ExtResource("1_hbp7n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcvit"]
+atlas = ExtResource("2_lfuyr")
 region = Rect2(0, 0, 7, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wx2ie"]
-atlas = ExtResource("1_hbp7n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq7na"]
+atlas = ExtResource("2_lfuyr")
 region = Rect2(7, 0, 7, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81tln"]
-atlas = ExtResource("1_hbp7n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_afgfm"]
+atlas = ExtResource("2_lfuyr")
 region = Rect2(14, 0, 7, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_adbls"]
-atlas = ExtResource("1_hbp7n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieg7i"]
+atlas = ExtResource("2_lfuyr")
 region = Rect2(21, 0, 7, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khpid"]
-atlas = ExtResource("1_hbp7n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hna1v"]
+atlas = ExtResource("2_lfuyr")
 region = Rect2(28, 0, 7, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bd421"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c5cpg")
+"texture": SubResource("AtlasTexture_jcvit")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wx2ie")
+"texture": SubResource("AtlasTexture_fq7na")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_81tln")
+"texture": SubResource("AtlasTexture_afgfm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_adbls")
+"texture": SubResource("AtlasTexture_ieg7i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khpid")
+"texture": SubResource("AtlasTexture_hna1v")
 }],
 "loop": true,
 "name": &"Spin",
@@ -62,7 +62,7 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bd421")
 animation = &"Spin"
 autoplay = "Spin"
-frame_progress = 0.588786
+frame_progress = 0.698942
 
 [node name="Area2D" type="Area2D" parent="."]
 

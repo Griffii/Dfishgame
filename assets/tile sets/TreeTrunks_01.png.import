@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cer06wy01xxyd"
-path="res://.godot/imported/Shore_Decorations_01.png-6f1830897819c9adf0eb4afc209c83b4.ctex"
+uid="uid://dnfhil8fe0fb4"
+path="res://.godot/imported/TreeTrunks_01.png-241a5ebcfe8d2ca1378415b814d31753.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile sets/Shore_Decorations_01.png"
-dest_files=["res://.godot/imported/Shore_Decorations_01.png-6f1830897819c9adf0eb4afc209c83b4.ctex"]
+source_file="res://assets/tile sets/TreeTrunks_01.png"
+dest_files=["res://.godot/imported/TreeTrunks_01.png-241a5ebcfe8d2ca1378415b814d31753.ctex"]
 
 [params]
 
