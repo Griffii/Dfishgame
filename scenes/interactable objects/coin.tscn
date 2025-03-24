@@ -54,7 +54,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxqe3"]
 
-[node name="Coin" type="Node2D"]
+[node name="Coin" type="Node2D" groups=["uncollected"]]
 script = ExtResource("1_m7kpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

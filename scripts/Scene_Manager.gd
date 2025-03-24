@@ -17,16 +17,16 @@ var _load_scene_into : Node
 var _scene_to_unload : Node
 var _loading_in_progress : bool = false
 
+var current_level_node : Node
 
-## Currently only being used to connect to required, internal signals
+## Connects signals and runs start up commands, like making sure levels.json exists
 func _ready() -> void:
 	_content_invalid.connect(_on_content_invalid)
 	_content_failed_to_load.connect(_on_content_failed_to_load)
 	_content_finished_loading.connect(_on_content_finished_loading)
+	
+	ensure_level_data_exists()
 
-func start_game():
-	print("_load_content(main_menu)")
-	_load_content("res://scenes/menus/main_menu.tscn")
 
 func _add_loading_screen(transition_type:String="no_transition"):
 	# using "no_in_transition" as the transition name when skipping a transition felt... weird
@@ -69,8 +69,6 @@ func _load_content(content_path:String) -> void:
 	_load_progress_timer.start()
 	#print("Loading Finish...")
 
-
-
 func _monitor_load_status() -> void:
 	var load_progress = []
 	var load_status = ResourceLoader.load_threaded_get_status(_content_path, load_progress)
@@ -94,50 +92,167 @@ func _monitor_load_status() -> void:
 			return # this last return isn't necessary but I like how the 3 dead ends stand out as similarinished_loading.emit(ResourceLoader.load_threaded_get(_content_path).instantiate())
 
 
-
-
 func _on_content_failed_to_load(path:String):
 	printerr("Error: Failed to load resource: '%s'" % [path])
-
 func _on_content_invalid(path:String) -> void:
 	printerr("Error: Cannot load resource: '%s'" % [path])
-
 func _on_content_finished_loading(incoming_scene) -> void:
-	var outgoing_scene = _scene_to_unload	# NEW > can't use current_scene anymore
+	var outgoing_scene = _scene_to_unload
 	
-	# if our outgoing_scene has data to pass, give it to our incoming_scene
-	if outgoing_scene != null:	
+	# Set new scene as current level node
+	current_level_node = incoming_scene
+	
+	# Set the level name from the scene file name
+	if incoming_scene.scene_file_path != "":
+		var scene_basename = incoming_scene.scene_file_path.get_file().get_basename()
+		incoming_scene.set("level_name", scene_basename)
+		
+	# Transfer data if applicable
+	if outgoing_scene != null:
 		if outgoing_scene.has_method("get_data") and incoming_scene.has_method("receive_data"):
 			incoming_scene.receive_data(outgoing_scene.get_data())
-	
-	# load the incoming into the designated node
+			
+	# Add the scene to the tree
 	_load_scene_into.add_child(incoming_scene)
-		# listen for this if you want to perform tasks on the scene immeidately after adding it to the tree
-	# ex: moveing the HUD back up to the top of the stack
-	scene_added.emit(incoming_scene,_loading_screen)
+	scene_added.emit(incoming_scene, _loading_screen)
 	
-		# Remove the old scene
+	# Remove the old scene
 	if _scene_to_unload != null:
-		if _scene_to_unload != get_tree().root: 
+		if _scene_to_unload != get_tree().root:
 			_scene_to_unload.queue_free()
-	
-	# called right after scene is added to tree (presuming _ready has fired)
-	# ex: do some setup before player gains control (I'm using it to position the player) 
-	if incoming_scene.has_method("init_scene"): 
+			
+	# Call optional hooks
+	if incoming_scene.has_method("init_scene"):
 		incoming_scene.init_scene()
-	
-	# probably not necssary since we split our _content_finished_loading but it won't hurt to have an extra check
+		
 	if _loading_screen != null:
 		_loading_screen.finish_transition()
 		
-		# Wait or loading animation to finish
-		##await _loading_screen.animation_player.animation_finished
-
-	# if your incoming scene implements init_scene() > call it here
-	# ex: I'm using it to enable control of the player (they're locked while in transition)
-	if incoming_scene.has_method("start_scene"): 
+	if incoming_scene.has_method("start_scene"):
 		incoming_scene.start_scene()
-	
-	# load is complete, free up SceneManager to load something else and report load_complete signal
+		
+	# Mark loading complete
 	_loading_in_progress = false
 	load_complete.emit(incoming_scene)
+
+
+
+
+## Logic for reading and writing level data to the level.json
+## Adds persistance to levels like which coins have been collected
+func ensure_level_data_exists():
+	var save_path = "user://levels.json"
+	var default_path = "res://scenes/levels/levels.json"
+	
+	if not FileAccess.file_exists(save_path):
+		if FileAccess.file_exists(default_path):
+			var default_file = FileAccess.open(default_path, FileAccess.READ)
+			var save_file = FileAccess.open(save_path, FileAccess.WRITE)
+			
+			if default_file and save_file:
+				save_file.store_string(default_file.get_as_text())
+				print("Copied default levels.json to user://")
+			else:
+				push_error("Failed to open default or user save file.")
+		else:
+			push_error("Default levels.json is missing from res://")
+
+func load_level_data() -> Dictionary:
+	if not FileAccess.file_exists("user://levels.json"):
+		printerr("levels.json does not exist in user://")
+		return {}
+		
+	var file = FileAccess.open("user://levels.json", FileAccess.READ)
+	if file:
+		var json_text = file.get_as_text()
+		var result = JSON.parse_string(json_text)
+		if result is Dictionary:
+			return result
+		else:
+			printerr("Failed to parse levels.json.")
+	else:
+		printerr("Could not open levels.json.")
+	return {}
+
+func leave_level(level_name: String, complete: bool):
+	var data = load_level_data()
+	var levels = data.get("levels", [])
+	var collected_this_run = current_level_node.get_collected_coins(current_level_node.get_node("Coin_Container"))
+	
+	for level in levels:
+		if level.get("level_name") == level_name:
+			# Mark the level as complete if called from end of level
+			if complete:
+				level["is_completed"] = true
+			
+			# Ensure arrays exist
+			if !level.has("uncollected_coins"):
+				level["uncollected_coins"] = []
+			if !level.has("collected_coins"):
+				level["collected_coins"] = []
+				
+			var uncollected = level["uncollected_coins"]
+			var collected = level["collected_coins"]
+			
+			for coin in collected_this_run:
+				if coin in uncollected:
+					uncollected.erase(coin)
+					if coin not in collected:
+						collected.append(coin)
+						
+			# Update the level entry
+			level["uncollected_coins"] = uncollected
+			level["collected_coins"] = collected
+			break
+			
+	save_level_data(data)
+
+func save_level_data(data: Dictionary):
+	var file = FileAccess.open("user://levels.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(data, "\t"))  # Pretty print with tabs
+
+func get_next_level(current_level_name: String) -> Dictionary:
+	var data = load_level_data()
+	var levels = data.get("levels", [])
+	
+	for i in levels.size():
+		if levels[i].get("level_name", "") == current_level_name:
+			if i + 1 < levels.size():
+				return levels[i + 1]
+			else:
+				print("This was the last level.")
+				return {}
+	
+	print("Current level not found in levels.json")
+	return {}
+
+func get_next_level_path(current_level_name: String):
+	var next_level = get_next_level(current_level_name)
+	if next_level:
+		var scene_path = next_level.get("scene_path", "")
+		if scene_path != "":
+			return scene_path
+
+
+func load_next_level(current_level_name: String, complete: bool):
+	# Save level changes
+	leave_level(current_level_name, complete)
+	# Call next uncompleted level and free current level
+	# If no uncompleted levels remain, load main menu
+	if get_next_level_path(current_level_name):
+		swap_scenes(get_next_level_path(current_level_name), null, current_level_node, "no_transition")
+	else:
+		swap_scenes("res://scenes/menus/main_menu.tscn", null, current_level_node, "no_transition")
+
+
+## Debug command to reset saved level data
+func reset_all_levels() -> void:
+	var data = load_level_data()
+	var levels = data.get("levels", [])
+	
+	for level in levels:
+		level["is_completed"] = false
+		level["collected_coins"] = []
+	
+	save_level_data(data)
+	print("All levels have been reset.")

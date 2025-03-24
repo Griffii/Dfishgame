@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var fade_duration := randf_range(2.0, 5.0)  # Time (seconds) to fade out
+@export var fade_duration := randf_range(4.0, 8.0)  # Time (seconds) to fade out
 @onready var sprite := $Sprite2D
 var fade_timer := 0.0
 

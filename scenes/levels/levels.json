@@ -1,0 +1,42 @@
+{
+	"levels": [
+		{
+			"collected_coins": [
+				"Coin1",
+				"Coin2"
+			],
+			"is_completed": true,
+			"level_name": "tutorial_level",
+			"scene_path": "res://scenes/levels/tutorial_level.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2"
+			]
+		},
+		{
+			"collected_coins": [],
+			"is_completed": false,
+			"level_name": "level_1-1",
+			"scene_path": "res://scenes/levels/level_1-1.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3"
+			]
+		},
+		{
+			"collected_coins": [],
+			"is_completed": false,
+			"level_name": "level_2-1",
+			"scene_path": "res://scenes/levels/level_2-1.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3",
+				"Coin4",
+				"Coin5",
+				"Coin6"
+			]
+		}
+	]
+}
