@@ -162,7 +162,6 @@ func respawn():
 	global_position = root_node.current_checkpoint.position
 	change_state(flopping_state)
 
-
 func explode():
 	if !is_exploded:
 		sprite.hide()
@@ -189,7 +188,7 @@ func explode():
 				var decal = blood_splat.instantiate()
 				decal.global_position = result.position
 				decal.rotation = randf() * TAU
-				decal.scale = Vector2.ONE * randf_range(0.5, 2.5)
+				decal.scale = Vector2.ONE * randf_range(1.0, 2.5)
 				
 				# Optional: attach decal to the surface it hit
 				if result.collider is Node:
@@ -205,12 +204,9 @@ func explode():
 		sprite.show()
 
 
-
-
-
 ## Logic for UI management
 func toggle_paused():
 	is_paused = !is_paused
 
 func _on_respawn_timer_timeout():
-	respawn()
+	explode()

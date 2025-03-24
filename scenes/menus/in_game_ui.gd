@@ -4,6 +4,10 @@ extends Control
 @export var pause_menu: MarginContainer
 @export var settings_menu: MarginContainer
 
+func _ready() -> void:
+	## Double check UI starts hidden
+	pause_menu.visible = false
+	settings_menu.visible = false
 
 func toggle_visibility(object):
 	object.visible = !object.visible

@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=4 uid="uid://2f7xjiyiaipg"]
 
-[ext_resource type="Script" path="res://scenes/levels/tutorial__level.gd" id="1_wfdej"]
+[ext_resource type="Script" path="res://scenes/levels/tutorial_level.gd" id="1_wfdej"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="2_88odc"]
 [ext_resource type="Texture2D" uid="uid://bq7rurke5ge1e" path="res://assets/tile sets/Cartoon_Grass_01.png" id="3_1cviv"]
 [ext_resource type="Texture2D" uid="uid://d113ivic715jn" path="res://assets/tile sets/Cartoon_GroundDecorations_02.png" id="4_vim3p"]
@@ -323,7 +323,7 @@ size = Vector2(24.2158, 59.292)
 script = ExtResource("1_wfdej")
 
 [node name="D_Salmon" parent="." instance=ExtResource("2_88odc")]
-position = Vector2(170, -692)
+position = Vector2(169, -692)
 
 [node name="TileMap_Container" type="Node" parent="."]
 
@@ -439,11 +439,11 @@ texture = ExtResource("11_3apxy")
 
 [node name="Coin_Container" type="Node" parent="."]
 
-[node name="Coin2" parent="Coin_Container" instance=ExtResource("12_01csh")]
+[node name="Coin1" parent="Coin_Container" instance=ExtResource("12_01csh")]
 z_index = 1
 position = Vector2(3035, -674)
 
-[node name="Coin3" parent="Coin_Container" instance=ExtResource("12_01csh")]
+[node name="Coin2" parent="Coin_Container" instance=ExtResource("12_01csh")]
 z_index = 1
 position = Vector2(4114, -1315)
 
@@ -519,6 +519,7 @@ text = "(sharp)"
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Labels_Container/Spikes_Text"]
+visible = false
 position = Vector2(2109, -297.5)
 shape = SubResource("RectangleShape2D_rbiem")
 
@@ -612,6 +613,8 @@ offset_left = -111.0
 offset_top = 8.0
 offset_right = 428.0
 offset_bottom = 183.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_krsf2")
 theme_override_font_sizes/font_size = 64
 text = "THE END"
@@ -622,10 +625,7 @@ scale = Vector2(16.6833, 5.81866)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TheEnd/EndArea"]
 position = Vector2(4.97504, 7.0463)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ahsps")
-
-[node name="Blood_Container" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_01/Area2D" to="." method="_on_checkpoint_01_entered"]
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_02/Area2D" to="." method="_on_checkpoint_02_entered"]

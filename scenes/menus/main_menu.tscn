@@ -1,10 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceis3jqg5uuvx"]
+[gd_scene load_steps=12 format=3 uid="uid://ceis3jqg5uuvx"]
 
 [ext_resource type="FontFile" uid="uid://0hcmt3kv7m6g" path="res://assets/fonts/BadComic-Regular.ttf" id="1_pis8r"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_wwwou"]
+[ext_resource type="Texture2D" uid="uid://cfl86wrtrta8p" path="res://assets/SproutLands Art Pack/Sprite sheet for Basic Pack.png" id="2_kbvgn"]
 [ext_resource type="AudioStream" uid="uid://bkx8pdhsccgcg" path="res://assets/sfx/Select 1.wav" id="3_5qb12"]
+[ext_resource type="Texture2D" uid="uid://kwinsc3w6nes" path="res://assets/SproutLands Art Pack/UI Big Play Button.png" id="4_e87xw"]
+[ext_resource type="Texture2D" uid="uid://dw2hdmp6ulslr" path="res://icon.png" id="6_l86vd"]
 
-[node name="Main_Menu" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7b5l"]
+texture = ExtResource("2_kbvgn")
+region_rect = Rect2(275, 211, 90, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q7725"]
+texture = ExtResource("2_kbvgn")
+region_rect = Rect2(275, 178, 90, 27)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nwlyg"]
+texture = ExtResource("4_e87xw")
+region_rect = Rect2(99, 2, 90, 27)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckbo5"]
+texture = ExtResource("4_e87xw")
+region_rect = Rect2(3, 2, 90, 27)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkomg"]
+radius = 6.0
+height = 58.0
+
+[node name="Main_Menu" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,8 +35,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wwwou")
+main_menu = NodePath("Main_Menu_Container")
+settings_menu = NodePath("Settings_Menu_Container")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Main_Menu_Container" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,51 +46,168 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="Buttons_Window" type="NinePatchRect" parent="Main_Menu_Container"]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+texture = ExtResource("2_kbvgn")
+region_rect = Rect2(293, 5, 38, 38)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_Menu_Container/Buttons_Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -170.0
+offset_right = 156.5
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="play_btn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="play_btn" type="Button" parent="Main_Menu_Container/Buttons_Window/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_pis8r")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q7725")
 text = "PLAY"
 
-[node name="settings_btn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="settings_btn" type="Button" parent="Main_Menu_Container/Buttons_Window/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_pis8r")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
+theme_override_styles/hover = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q7725")
 text = "SETTINGS"
 
-[node name="quit_btn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="quit_btn" type="Button" parent="Main_Menu_Container/Buttons_Window/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_pis8r")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j7b5l")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q7725")
 text = "QUIT"
+
+[node name="Settings_Menu_Container" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings_Window" type="NinePatchRect" parent="Settings_Menu_Container"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_kbvgn")
+region_rect = Rect2(201, 57, 30, 30)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Menu_Container/Settings_Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Reset_Button" type="Button" parent="Settings_Menu_Container/Settings_Window/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("StyleBoxTexture_nwlyg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nwlyg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ckbo5")
+text = "⚠️ Reset Level Data ⚠️"
+
+[node name="Go_Back__Button" type="Button" parent="Settings_Menu_Container/Settings_Window/VBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = SubResource("StyleBoxTexture_nwlyg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nwlyg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ckbo5")
+text = "Go Back"
 
 [node name="Audio_Controller" type="Node" parent="."]
 
 [node name="sfx_click" type="AudioStreamPlayer2D" parent="Audio_Controller"]
 stream = ExtResource("3_5qb12")
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/play_btn" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/settings_btn" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/quit_btn" to="." method="_on_quit_pressed"]
+[node name="MouseAnchor" type="StaticBody2D" parent="."]
+
+[node name="RigidFish" type="RigidBody2D" parent="MouseAnchor"]
+position = Vector2(-38, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseAnchor/RigidFish"]
+texture = ExtResource("6_l86vd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseAnchor/RigidFish"]
+position = Vector2(9, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lkomg")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="MouseAnchor"]
+node_a = NodePath("..")
+node_b = NodePath("../RigidFish")
+
+[connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/play_btn" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/settings_btn" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/quit_btn" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/VBoxContainer/Reset_Button" to="." method="_on_reset_levels_data_button_pressed"]
+[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/VBoxContainer/Go_Back__Button" to="." method="_on_options_pressed"]

@@ -29,5 +29,3 @@ func physics_process(delta):
 	if player.rotation_degrees == 0 && !is_flipped:
 		player.sprite.flip_v = true
 		is_flipped = true
-	
-	##print("Timer: ", respawn_timer.time_left)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://dvy50cse08105"]
 
 [ext_resource type="Script" path="res://characters/D_salmon/salmon_player.gd" id="1_bf82l"]
-[ext_resource type="Texture2D" uid="uid://c28ous145yfbp" path="res://characters/D_salmon/salmon_1.png" id="1_lj6rk"]
 [ext_resource type="PackedScene" uid="uid://bsw0dll58iomy" path="res://scenes/particles/blood/blood_drop.tscn" id="2_odigk"]
 [ext_resource type="PackedScene" uid="uid://cd6qy54iqpe3c" path="res://scenes/particles/blood/blood_splatter.tscn" id="3_5caw1"]
 [ext_resource type="Script" path="res://characters/D_salmon/player_state.gd" id="3_lknue"]
+[ext_resource type="Texture2D" uid="uid://cwl1cfeervgjn" path="res://characters/D_salmon/salmon_sprite.png" id="3_sdkeb"]
 [ext_resource type="Script" path="res://characters/D_salmon/swimming.gd" id="4_57cug"]
 [ext_resource type="Script" path="res://characters/D_salmon/flopping.gd" id="5_e5lup"]
 [ext_resource type="Script" path="res://characters/D_salmon/dead.gd" id="6_q07fi"]
@@ -14,23 +14,23 @@
 [ext_resource type="AudioStream" uid="uid://dra2or65x4rqj" path="res://assets/sfx/wet_03.mp3" id="12_ijpfe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2acp"]
-radius = 8.0
-height = 60.0
+radius = 7.0
+height = 76.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qthbq"]
-radius = 8.0
-height = 60.0
+radius = 11.0
+height = 78.0
 
 [node name="D_Salmon" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_bf82l")
 blood_splat = ExtResource("2_odigk")
 
 [node name="salmon_sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_lj6rk")
-vframes = 10
+texture = ExtResource("3_sdkeb")
 
 [node name="CollisionShape_Player" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g2acp")
 
@@ -38,6 +38,7 @@ shape = SubResource("CapsuleShape2D_g2acp")
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water_Detector"]
+position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qthbq")
 
@@ -78,7 +79,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("7_ttsac")
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="Audio_Controller" type="Node" parent="."]
 
