@@ -137,7 +137,6 @@ func draw_water_body():
 	water_polygon.set_polygon(water_polygon_points)
 	water_polygon.set_uv(water_polygon_points)
 
-
 func new_border():
 	#DRAW A NEW BORDER TO THE WATER
 	
@@ -159,7 +158,6 @@ func new_border():
 	water_border.smooth(true)
 	water_border.queue_redraw()
 
-
 #this function adds a speed to a spring with this index
 func splash(index, speed):
 	if index >= 0 and index < springs.size():
@@ -170,16 +168,14 @@ func _on_water_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Use groups to detect the player
 		body.enter_water()
 	
-	#creates a instace of the particle system
-	#var s = splash_particle.instance()
-	
-	#adds the particle to the scene
-	#get_tree().current_scene.add_child(s)
-	
-	#sets the position of the particle to the same of the body
-	#s.global_position = body.global_position
+	if body.is_in_group("log"):
+		body.enter_water(position.y) # Has to pass the water level to the body
+		#print("Log entered water with a surface y coord of: ", position.y)
 
 
 func _on_water_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		body.exit_water()
+	
+	if body.is_in_group("log"):
 		body.exit_water()

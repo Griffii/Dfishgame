@@ -12,7 +12,7 @@ func _ready() -> void:
 	##AudioGlobal.current_area = "MainMenu"
 
 # Make the mouse anchor customer sprite follow the mouse
-func _process(delta):
+func _process(_delta):
 	mouse_anchor.global_position = get_global_mouse_position()
 
 

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0qi"]
 size = Vector2(127, 33)
 
-[node name="fallinglogh" type="RigidBody2D"]
+[node name="fallinglogh" type="RigidBody2D" groups=["log"]]
 script = ExtResource("1_p84r6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

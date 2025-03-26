@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var blood_splat : PackedScene
 @onready var blood_splatter = $Blood_Manager/Blood_Splatter/GPUParticles2D
 
-@onready var sprite: Sprite2D = $salmon_sprite  # Changed from Sprite2d cause this shit can move now
+@onready var sprite: Sprite2D = $salmon_sprite
 @onready var collision_shape_player: CollisionShape2D = $CollisionShape_Player
 @onready var water_detector: Area2D = $Water_Detector
 @onready var dry_out_overlay = $CanvasLayer/DryOutOverlay 
@@ -160,11 +160,14 @@ func respawn():
 	reset_drying_timer()
 	is_exploded = false
 	global_position = root_node.current_checkpoint.position
+	sprite.show()
+	#collision_shape_player.disabled = false
 	change_state(flopping_state)
 
 func explode():
 	if !is_exploded:
 		sprite.hide()
+		#collision_shape_player.disabled = true
 		
 		play_sound(death_splat_sfx)
 		# Call the blood splatter particle
@@ -196,12 +199,11 @@ func explode():
 				else:
 					get_tree().current_scene.add_child(decal)
 		
-		# Pause before moving player
+		# Slight pause before moving player so we can see the blood splosion
 		await get_tree().create_timer(1.0).timeout
 		
 		# Respawn after exploding
 		respawn()
-		sprite.show()
 
 
 ## Logic for UI management
