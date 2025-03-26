@@ -1,7 +1,6 @@
-[gd_scene load_steps=41 format=4 uid="uid://2f7xjiyiaipg"]
+[gd_scene load_steps=40 format=4 uid="uid://2f7xjiyiaipg"]
 
 [ext_resource type="Script" path="res://scenes/levels/tutorial.gd" id="1_uwmvn"]
-[ext_resource type="JSON" path="res://dialogue/dialogue_trees/tutorial_dialogue.json" id="2_7124l"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="3_qjvjr"]
 [ext_resource type="TileSet" uid="uid://dc7uviqi0tg3d" path="res://assets/tile sets/cartoon_grass_tileset_01.tres" id="4_wrehl"]
 [ext_resource type="Texture2D" uid="uid://d113ivic715jn" path="res://assets/tile sets/Cartoon_GroundDecorations_02.png" id="5_rmiac"]
@@ -275,9 +274,9 @@ size = Vector2(24.2158, 59.292)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287yl"]
 size = Vector2(476, 27)
 
-[node name="Tutorial__Level" type="Node2D"]
+[node name="Tutorial__Level" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_uwmvn")
-dialogue_json = ExtResource("2_7124l")
+player = NodePath("D_Salmon")
 
 [node name="D_Salmon" parent="." instance=ExtResource("3_qjvjr")]
 position = Vector2(169, -692)

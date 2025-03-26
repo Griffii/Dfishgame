@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bmeaikjs2u4v3"]
+[gd_scene load_steps=28 format=4 uid="uid://bmeaikjs2u4v3"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_2rdj1"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="2_xt1yq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cgldju4nf37ev" path="res://assets/plants/Tree_02.png" id="12_qywoi"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="13_s68sj"]
 [ext_resource type="Texture2D" uid="uid://dg5rpenqi5mx0" path="res://assets/sky boxes/Sky.png" id="14_d0ikg"]
+[ext_resource type="PackedScene" uid="uid://cf4pvnl48y3je" path="res://scenes/hazards/spikes/spikes_02.tscn" id="14_tfhk0"]
 [ext_resource type="Script" path="res://scripts/cloud_scroller.gd" id="15_0y3ph"]
 [ext_resource type="Texture2D" uid="uid://dexjkerd2meka" path="res://assets/sky boxes/Clouds1.png" id="16_uv2g7"]
 [ext_resource type="Texture2D" uid="uid://dgx2wc4u0c2ja" path="res://assets/sky boxes/Tiling_Trees.png" id="17_mrmhl"]
@@ -396,6 +397,26 @@ position = Vector2(4122, -562)
 position = Vector2(5, 30)
 shape = SubResource("RectangleShape2D_iwln6")
 
+[node name="Hazard_Container" type="Node" parent="."]
+
+[node name="Spikes_01" parent="Hazard_Container" instance=ExtResource("14_tfhk0")]
+position = Vector2(3505, -625)
+
+[node name="Spikes_02" parent="Hazard_Container" instance=ExtResource("14_tfhk0")]
+position = Vector2(4302, -522)
+rotation = 0.367332
+
+[node name="Spikes_03" parent="Hazard_Container" instance=ExtResource("14_tfhk0")]
+z_index = -1
+position = Vector2(3790, -273)
+rotation = 3.13864
+
+[node name="Log_Container" type="Node" parent="."]
+
+[node name="fallinglogh" parent="Log_Container" instance=ExtResource("19_0nikm")]
+z_index = -1
+position = Vector2(928, -557)
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -473,12 +494,6 @@ offset_top = -8.0
 offset_right = 6979.0
 offset_bottom = 853.0
 texture = SubResource("GradientTexture2D_oixp5")
-
-[node name="Log_Container" type="Node" parent="."]
-
-[node name="fallinglogh" parent="Log_Container" instance=ExtResource("19_0nikm")]
-z_index = -1
-position = Vector2(928, -557)
 
 [connection signal="body_entered" from="Water_Container/TheEnd/EndArea" to="." method="_on_end_area_body_entered"]
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_01/Area2D" to="." method="_on_checkpoint_01_entered"]

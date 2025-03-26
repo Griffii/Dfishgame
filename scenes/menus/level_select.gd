@@ -11,7 +11,7 @@ func _ready():
 		##print("Passing this data to the level_overview_box scene: ", level_data)
 		var level_overview = LEVEL_OVERVIEW_SCENE.instantiate()
 		level_grid.add_child(level_overview)
-		level_overview.set_level_data(level_data)
+		level_overview.set_level_data(level_data, self)
 
 
 func _on_back_button_pressed() -> void:
