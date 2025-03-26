@@ -1,0 +1,58 @@
+{
+	"levels": [
+		{
+			"collected_coins": [
+				"Coin1",
+				"Coin2"
+			],
+			"is_completed": true,
+			"level_name": "Tutorial",
+			"scene_path": "res://scenes/levels/Tutorial.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2"
+			]
+		},
+		{
+			"collected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3"
+			],
+			"is_completed": true,
+			"level_name": "Level 1",
+			"scene_path": "res://scenes/levels/Level 1.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3"
+			]
+		},
+		{
+			"collected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin5",
+				"Coin6"
+			],
+			"is_completed": false,
+			"level_name": "The Cave Entrance",
+			"scene_path": "res://scenes/levels/The Cave Entrance.tscn",
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3",
+				"Coin4",
+				"Coin5",
+				"Coin6"
+			]
+		},
+		{
+			"collected_coins": [],
+			"is_completed": false,
+			"level_name": "The Canopy",
+			"scene_path": "res://scenes/levels/The Canopy.tscn",
+			"uncollected_coins": []
+		}
+	]
+}

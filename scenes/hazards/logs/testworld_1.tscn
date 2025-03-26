@@ -478,9 +478,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="testfloatinglog" parent="." instance=ExtResource("18_r1l7i")]
 position = Vector2(1665, -784)
-despawn_height = 1000.0
-buoyancy = 1.5
-drag = 0.2
+despawn_height = 1732.0
 
 [node name="floatinglogspawner" parent="." instance=ExtResource("19_use1a")]
 position = Vector2(1664, -781)
