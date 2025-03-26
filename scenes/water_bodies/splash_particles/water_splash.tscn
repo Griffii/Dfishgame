@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsy3bvdx3yo6g"]
+
+[ext_resource type="Texture2D" uid="uid://cag2udg5belqm" path="res://assets/objects/Water_particle_1.png" id="1_15780"]
+
+[sub_resource type="Gradient" id="Gradient_42hon"]
+offsets = PackedFloat32Array(0.474576, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_67vgg"]
+gradient = SubResource("Gradient_42hon")
+
+[sub_resource type="Curve" id="Curve_nwbi4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.496212, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00156748), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6fs6p"]
+curve = SubResource("Curve_nwbi4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_snum0"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 450.0
+gravity = Vector3(0, 980, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_6fs6p")
+color_ramp = SubResource("GradientTexture1D_67vgg")
+
+[node name="Water_Splash" type="Node2D"]
+modulate = Color(1, 1, 1, 0.470588)
+
+[node name="ClipArea" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -249.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 10.0
+color = Color(1, 1, 1, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ClipArea"]
+show_behind_parent = true
+position = Vector2(249, 250)
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_snum0")
+texture = ExtResource("1_15780")
+one_shot = true
+explosiveness = 1.0

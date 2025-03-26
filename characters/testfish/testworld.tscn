@@ -1,16 +1,19 @@
-[gd_scene load_steps=23 format=4 uid="uid://di5g4b1g5wvan"]
+[gd_scene load_steps=26 format=4 uid="uid://di5g4b1g5wvan"]
 
-[ext_resource type="PackedScene" uid="uid://dh35tgkjyd8e0" path="res://characters/testfish/testfish.tscn" id="1_ktux4"]
 [ext_resource type="PackedScene" uid="uid://bmeaikjs2u4v3" path="res://scenes/levels/level_1-1.tscn" id="2_ou5ys"]
 [ext_resource type="Script" path="res://scripts/water.gd" id="3_ka3po"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="4_7buqr"]
 [ext_resource type="Script" path="res://scenes/water_bodies/water_fall/waterfall.gd" id="5_1nmqj"]
 [ext_resource type="Shader" path="res://shaders/waterfall_03.gdshader" id="6_v1vqa"]
 [ext_resource type="Texture2D" uid="uid://b71kpgnuibd2r" path="res://assets/water/Test_waterfall_01.png" id="7_3qlrq"]
+[ext_resource type="PackedScene" uid="uid://dneoxs0gm70q3" path="res://scenes/hazards/logs/testwater.tscn" id="7_ww1n5"]
 [ext_resource type="Texture2D" uid="uid://cwjkljjxdpdck" path="res://assets/reference_images/Level1_WorldDraft_01.png" id="8_jb3u4"]
 [ext_resource type="Texture2D" uid="uid://cj3unnxsp77oo" path="res://assets/tile sets/Basic_Shapes_Gray_Tileset.png" id="9_f1pk8"]
 [ext_resource type="Texture2D" uid="uid://f0knslbjjdyv" path="res://assets/tile sets/Basic_Shapes_Green_Tileset.png" id="10_h2jlw"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="11_2j052"]
+[ext_resource type="PackedScene" uid="uid://cqlq875cgrtxi" path="res://scenes/hazards/logs/testfloatinglog.tscn" id="12_bo6hp"]
+[ext_resource type="PackedScene" uid="uid://dnsbreyay3frv" path="res://scenes/hazards/logs/floatinglogspawner.tscn" id="13_22a31"]
+[ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="14_fotn1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ycho7"]
 shader = ExtResource("4_7buqr")
@@ -19,9 +22,6 @@ shader_parameter/wave_amplitude = 10.0
 shader_parameter/wave_frequency = 15.0
 shader_parameter/water_color = Vector4(0, 0.4, 0.8, 0.6)
 shader_parameter/wave_height_pixels = 10.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x35q8"]
-size = Vector2(90.5696, 52.7613)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jbk7"]
 size = Vector2(63.177, 51.5583)
@@ -42,6 +42,9 @@ shader_parameter/edge_wiggle_frequency = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfg6n"]
 size = Vector2(168, 751)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x35q8"]
+size = Vector2(90.5696, 52.7613)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tm0ey"]
 texture = ExtResource("9_f1pk8")
@@ -407,30 +410,9 @@ sources/0 = SubResource("TileSetAtlasSource_pbjxd")
 
 [node name="testworld" type="Node2D"]
 
-[node name="testfish" parent="." instance=ExtResource("1_ktux4")]
-
 [node name="Level 1-1" parent="." instance=ExtResource("2_ou5ys")]
 
 [node name="Water_Container2" type="Node" parent="Level 1-1"]
-
-[node name="Water1" type="Node2D" parent="Level 1-1/Water_Container2" groups=["water"]]
-position = Vector2(678, -351)
-script = ExtResource("3_ka3po")
-
-[node name="ColorRect" type="ColorRect" parent="Level 1-1/Water_Container2/Water1"]
-material = SubResource("ShaderMaterial_ycho7")
-offset_left = -16.0
-offset_top = 27.0
-offset_right = 1505.0
-offset_bottom = 344.0
-metadata/_edit_use_anchors_ = true
-
-[node name="WaterArea" type="Area2D" parent="Level 1-1/Water_Container2/Water1"]
-scale = Vector2(16.6833, 5.81866)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1-1/Water_Container2/Water1/WaterArea"]
-position = Vector2(44.2658, 32.5676)
-shape = SubResource("RectangleShape2D_x35q8")
 
 [node name="Water2" type="Node2D" parent="Level 1-1/Water_Container2" groups=["water"]]
 position = Vector2(2378, -361)
@@ -506,6 +488,25 @@ texture = ExtResource("7_3qlrq")
 position = Vector2(6048, -698.5)
 shape = SubResource("RectangleShape2D_cfg6n")
 
+[node name="testwater" parent="Level 1-1/Water_Container2" instance=ExtResource("7_ww1n5")]
+position = Vector2(9, -13)
+
+[node name="ColorRect" type="ColorRect" parent="Level 1-1/Water_Container2/testwater"]
+material = SubResource("ShaderMaterial_ycho7")
+offset_left = 662.0
+offset_top = -324.0
+offset_right = 2183.0
+offset_bottom = -7.0
+metadata/_edit_use_anchors_ = true
+
+[node name="WaterArea" type="Area2D" parent="Level 1-1/Water_Container2/testwater"]
+position = Vector2(678, -351)
+scale = Vector2(16.6833, 5.81866)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 1-1/Water_Container2/testwater/WaterArea"]
+position = Vector2(44.2658, 32.5676)
+shape = SubResource("RectangleShape2D_x35q8")
+
 [node name="World Reference2" type="Sprite2D" parent="Level 1-1"]
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(3072, -1024)
@@ -533,5 +534,14 @@ position = Vector2(3712, -183)
 [node name="Coin3" parent="Level 1-1/Coin_Container2" instance=ExtResource("11_2j052")]
 z_index = -1
 position = Vector2(5958, -681)
+
+[node name="testfloatinglog" parent="." instance=ExtResource("12_bo6hp")]
+position = Vector2(1773, -625)
+
+[node name="floatinglogspawner" parent="testfloatinglog" instance=ExtResource("13_22a31")]
+position = Vector2(1680, -731)
+
+[node name="D_Salmon" parent="." instance=ExtResource("14_fotn1")]
+position = Vector2(297, -645)
 
 [connection signal="item_rect_changed" from="Level 1-1/Water_Container2/Waterfall/TestWaterfall01" to="Level 1-1/Water_Container2/Waterfall/TestWaterfall01" method="_on_item_rect_changed"]

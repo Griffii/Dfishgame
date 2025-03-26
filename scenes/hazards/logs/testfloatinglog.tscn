@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqlq875cgrtxi"]
+
+[ext_resource type="Script" path="res://scenes/hazards/logs/testfloatinglog.gd" id="1_vtbud"]
+[ext_resource type="Texture2D" uid="uid://sdolyacta8x3" path="res://scenes/hazards/logs/fallingloghori.png" id="2_nfmus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1oqg"]
+size = Vector2(96, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jper8"]
+size = Vector2(103, 12)
+
+[node name="testfloatinglog" type="RigidBody2D"]
+script = ExtResource("1_vtbud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nfmus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1.5)
+shape = SubResource("RectangleShape2D_l1oqg")
+
+[node name="waterdetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="waterdetector"]
+position = Vector2(-2.5, 11)
+shape = SubResource("RectangleShape2D_jper8")
+
+[connection signal="body_entered" from="waterdetector" to="." method="_on_water_entered"]
+[connection signal="body_exited" from="waterdetector" to="." method="_on_water_exited"]

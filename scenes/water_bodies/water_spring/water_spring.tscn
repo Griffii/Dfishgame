@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvpuq2qy0vjkx"]
+
+[ext_resource type="Script" path="res://scenes/water_bodies/water_spring/water_spring.gd" id="1_wotr7"]
+[ext_resource type="Texture2D" uid="uid://cjdhy4sse0f2m" path="res://assets/objects/joint.png" id="2_30y4c"]
+[ext_resource type="PackedScene" uid="uid://bsy3bvdx3yo6g" path="res://scenes/water_bodies/splash_particles/water_splash.tscn" id="3_gjnww"]
+[ext_resource type="AudioStream" uid="uid://btfxhqp18nceh" path="res://assets/sfx/Bubble 1.wav" id="4_k6hn3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_any84"]
+
+[node name="Water_Spring" type="Node2D"]
+script = ExtResource("1_wotr7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_30y4c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_any84")
+
+[node name="Water_Splash" parent="." instance=ExtResource("3_gjnww")]
+
+[node name="Audio_Controller" type="Node" parent="."]
+
+[node name="splash_sfx" type="AudioStreamPlayer2D" parent="Audio_Controller"]
+stream = ExtResource("4_k6hn3")
+max_polyphony = 5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

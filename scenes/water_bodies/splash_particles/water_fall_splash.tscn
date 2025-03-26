@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6ow123huw35b"]
+
+[ext_resource type="Texture2D" uid="uid://cag2udg5belqm" path="res://assets/objects/Water_particle_1.png" id="1_d7wab"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_f386p"]
+
+[sub_resource type="Gradient" id="Gradient_42hon"]
+offsets = PackedFloat32Array(0.474576, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hivvt"]
+gradient = SubResource("Gradient_42hon")
+
+[sub_resource type="Curve" id="Curve_nwbi4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.496212, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00156748), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mjq4v"]
+curve = SubResource("Curve_nwbi4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yhmcm"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 50.0
+emission_ring_inner_radius = 0.0
+angle_curve = SubResource("CurveTexture_f386p")
+direction = Vector3(-1, -1, 0)
+spread = 60.0
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 700, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_mjq4v")
+color_ramp = SubResource("GradientTexture1D_hivvt")
+
+[node name="WaterFall_Splash" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_yhmcm")
+texture = ExtResource("1_d7wab")
+randomness = 1.0
