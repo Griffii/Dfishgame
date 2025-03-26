@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bq7rurke5ge1e" path="res://assets/tile sets/Cartoon_Grass_01.png" id="1_dphml"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfk06"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbqx1"]
 texture = ExtResource("1_dphml")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
@@ -49,4 +49,4 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_bfk06")
+sources/1 = SubResource("TileSetAtlasSource_rbqx1")
