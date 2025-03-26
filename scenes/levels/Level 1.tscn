@@ -21,8 +21,15 @@
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="18_r7ksg"]
 [ext_resource type="PackedScene" uid="uid://c3snrjqxpbhdq" path="res://scenes/hazards/logs/fallinglogh.tscn" id="19_0nikm"]
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fov6l"]
 texture = ExtResource("4_rxd6b")
+
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fov6l"]
+texture = ExtResource("4_rxd6b")
+
+
 9:0/0 = 0
 10:0/0 = 0
 0:1/0 = 0
@@ -236,7 +243,9 @@ texture = ExtResource("4_rxd6b")
 
 [sub_resource type="TileSet" id="TileSet_4df1v"]
 physics_layer_0/collision_layer = 1
+
 sources/0 = SubResource("TileSetAtlasSource_fov6l")
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx0q0"]
 size = Vector2(24.2158, 52.0738)
@@ -297,6 +306,7 @@ offset_bottom = 183.0
 theme_override_fonts/font = ExtResource("7_162eg")
 theme_override_font_sizes/font_size = 64
 text = "THE END"
+
 
 [node name="EndArea" type="Area2D" parent="Water_Container/TheEnd"]
 position = Vector2(422, 3)
@@ -452,7 +462,12 @@ texture = ExtResource("16_uv2g7")
 [node name="Clouds4" type="Sprite2D" parent="ParallaxBackground/CloudLayer/CloudScroller"]
 z_index = -50
 position = Vector2(5478, -651)
+
 texture = ExtResource("16_uv2g7")
+
+
+texture = ExtResource("16_uv2g7")
+
 
 [node name="GroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -464,6 +479,7 @@ offset_bottom = 36.0
 scale = Vector2(34.2558, -7.77589)
 color = Color(0.0744152, 0.248214, 0.229551, 1)
 
+
 [node name="ColorRect2" type="ColorRect" parent="ParallaxBackground/GroundLayer"]
 offset_left = 3977.0
 offset_top = -366.0
@@ -471,6 +487,7 @@ offset_right = 3985.0
 offset_bottom = -348.0
 scale = Vector2(34.2558, -7.77589)
 color = Color(0.0744152, 0.248214, 0.229551, 1)
+
 
 [node name="TreesLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, 25)
