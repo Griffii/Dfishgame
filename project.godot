@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneManager="*res://scripts/Scene_Manager.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
@@ -26,9 +27,9 @@ directories/dch_directory={
 "Narrator": "res://characters/Narrator/Narrator.dch"
 }
 directories/dtl_directory={
-"tutorial_timeline": "res://dialogue/dialogic_timelines/tutorial_timeline.dtl"
+"tutorial_01": "res://dialogue/dialogic_timelines/tutorial_01.dtl"
 }
-layout/style_list=[]
+layout/style_list=["res://dialogue/Styles/Narrator_Bubble.tres"]
 layout/default_style=""
 variables={}
 extensions_folder="res://addons/dialogic_additions"

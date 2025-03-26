@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnlg07ckbg0w"
-path="res://.godot/imported/Back.svg-e2758897e824f72878a141959fd22cc9.ctex"
+uid="uid://cikulo7vbnp5o"
+path="res://.godot/imported/back-arrow.png-12c9707b61cd55711ca8975c200f7627.ctex"
 metadata={
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/dialogue_nodes/icons/Back.svg"
-dest_files=["res://.godot/imported/Back.svg-e2758897e824f72878a141959fd22cc9.ctex"]
+source_file="res://assets/icons/back-arrow.png"
+dest_files=["res://.godot/imported/back-arrow.png-12c9707b61cd55711ca8975c200f7627.ctex"]
 
 [params]
 
@@ -33,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

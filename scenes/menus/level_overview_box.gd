@@ -6,13 +6,15 @@ extends Control
 @onready var play_button = $MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/VBoxContainer/PlayButton
 
 var level_data = {}
+var parent_scene: Node
 
 func _ready() -> void:
 	level_name_label.text = "No Name"
 	coin_counter_label.text = "0/0"
 
 
-func set_level_data(level_dict):
+func set_level_data(level_dict, parent):
+	parent_scene = parent
 	level_data = level_dict
 	level_name_label.text = level_data.get("level_name", "???")
 	var uncollected = level_data.get("uncollected_coins", []).size()
@@ -27,6 +29,6 @@ func set_level_data(level_dict):
 
 func _on_play_pressed():
 	if level_data.has("scene_path"):
-		SceneManager.swap_scenes(level_data.get("scene_path"), null, get_parent(), "no_transition")
+		SceneManager.swap_scenes(level_data.get("scene_path"), null, parent_scene, "no_transition")
 	else:
 		push_error("Level is missing 'scene_path'")

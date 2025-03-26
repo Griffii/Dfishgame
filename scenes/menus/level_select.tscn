@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2evws6j3ucjt"]
+[gd_scene load_steps=4 format=3 uid="uid://b2evws6j3ucjt"]
 
 [ext_resource type="Script" path="res://scenes/menus/level_select.gd" id="1_7upal"]
+[ext_resource type="Texture2D" uid="uid://cikulo7vbnp5o" path="res://assets/icons/back-arrow.png" id="2_273rj"]
 [ext_resource type="FontFile" uid="uid://0hcmt3kv7m6g" path="res://assets/fonts/BadComic-Regular.ttf" id="2_ph036"]
 
 [node name="Level_Select" type="Control"]
@@ -35,7 +36,7 @@ theme_override_constants/separation = 350
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "⬅️"
+icon = ExtResource("2_273rj")
 
 [node name="Level Select Screen" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
