@@ -37,6 +37,14 @@
 				"Coin5",
 				"Coin6"
 			]
+		},
+		{
+			"collected_coins": [],
+			"is_completed": false,
+			"level_name": "The Canopy",
+			"scene_path": "res://scenes/levels/The Canopy.tscn",
+			"uncollected_coins": [
+			]
 		}
 	]
 }
