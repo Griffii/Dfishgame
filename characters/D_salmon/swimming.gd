@@ -10,7 +10,22 @@ extends PlayerState
 @export var rotation_recovery_speed: float = 250.0  # Speed of rotation reset
 
 func enter():
+	# Ensure the player sprite exists and the swimming animation is valid
+	if player.sprite:
+		if player.anim_player.has_animation("swimming"):
+			print("Playing swimming animation")
+			player.anim_player.play("swimming")  # Play swimming animation
+		else:
+			print("No 'swimming' animation found in player sprite.")
+	else:
+		print("Player sprite not found!")
+	
 	player.velocity = player.velocity * 0.8  # Slow velocity when entering water
+
+func exit():
+	if player.anim_player:
+		print("Stopping swimming animation")
+		player.anim_player.stop()
 
 func physics_process(delta):
 	swim_movement(delta)

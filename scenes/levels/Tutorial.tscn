@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://2f7xjiyiaipg"]
+[gd_scene load_steps=41 format=4 uid="uid://2f7xjiyiaipg"]
 
 [ext_resource type="Script" path="res://scenes/levels/tutorial.gd" id="1_uwmvn"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="3_qjvjr"]
@@ -20,6 +20,7 @@
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="19_x6fjh"]
 [ext_resource type="FontFile" uid="uid://drimirxkyao5u" path="res://assets/fonts/PixelOperator8.ttf" id="20_3q1hk"]
 [ext_resource type="PackedScene" uid="uid://cucddkqcentrc" path="res://dialogue/Styles/narrator_dialogue_box.tscn" id="21_5rkc3"]
+[ext_resource type="PackedScene" uid="uid://cmjxmqtv3jc8p" path="res://scenes/menus/world_audio_manager.tscn" id="21_ue2m8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksrvs"]
 texture = ExtResource("5_rmiac")
@@ -260,10 +261,10 @@ size = Vector2(371, 513)
 shader = ExtResource("19_x6fjh")
 shader_parameter/sigma = 3.3
 
-[sub_resource type="Gradient" id="Gradient_y6ucj"]
+[sub_resource type="Gradient" id="Gradient_sh5nr"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqpyh"]
-gradient = SubResource("Gradient_y6ucj")
+gradient = SubResource("Gradient_sh5nr")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_md786"]
 normal = Vector2(1, 0)
@@ -596,6 +597,9 @@ shape = SubResource("RectangleShape2D_287yl")
 [node name="Dialogue_Container" type="CanvasLayer" parent="Dialogue_Manager"]
 
 [node name="Narrator_Dialogue_Box" parent="Dialogue_Manager/Dialogue_Container" instance=ExtResource("21_5rkc3")]
+
+[node name="WorldAudioManager" parent="." instance=ExtResource("21_ue2m8")]
+script = null
 
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_01/Area2D" to="." method="_on_checkpoint_01_entered"]
 [connection signal="body_entered" from="Checkpoint_Container/Checkpoint_02/Area2D" to="." method="_on_checkpoint_02_entered"]

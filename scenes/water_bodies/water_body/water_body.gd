@@ -81,6 +81,8 @@ func _ready():
 	water_body_area.position = rect_position
 	rectangle.size = rect_extents
 	collisionShape.set_shape(rectangle)
+	
+	
 
 func _physics_process(_delta):
 	#moves all the springs accordingly

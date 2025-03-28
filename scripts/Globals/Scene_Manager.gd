@@ -39,6 +39,9 @@ func _add_loading_screen(transition_type:String="no_transition"):
 	_loading_screen.start_transition(_transition)
 
 func swap_scenes(scene_to_load:String, load_into:Node=null, scene_to_unload:Node=null, transition_type:String="fade_to_black") -> void:
+	# Unhide mouse hen called  - Just in case
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	if _loading_in_progress:
 		push_warning("SceneManager is already loading something")
 		return

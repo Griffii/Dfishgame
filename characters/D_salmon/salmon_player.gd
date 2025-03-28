@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var dry_out_overlay = $CanvasLayer/DryOutOverlay 
 @onready var game_ui  = $CanvasLayer/In_Game_UI
 @onready var camera = $Camera2D
+@onready var anim_player = $AnimationPlayer
 @onready var respawn_timer = $RespawnTimer
 @onready var swimming_state = $PlayerState/Swimming
 @onready var flopping_state = $PlayerState/Flopping

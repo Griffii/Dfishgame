@@ -29,6 +29,7 @@ func set_level_data(level_dict, parent):
 
 func _on_play_pressed():
 	if level_data.has("scene_path"):
+		parent_scene.sfx_click.play()
 		SceneManager.swap_scenes(level_data.get("scene_path"), null, parent_scene, "no_transition")
 	else:
 		push_error("Level is missing 'scene_path'")

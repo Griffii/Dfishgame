@@ -1,6 +1,7 @@
 class_name MainMenu extends Control
 
 @onready var sfx_click: AudioStreamPlayer2D = $Audio_Controller/sfx_click
+@onready var menu_bgm: AudioStreamPlayer2D = $Audio_Controller/menu_bgm
 @onready var mouse_anchor: StaticBody2D = $MouseAnchor
 @export var main_menu: MarginContainer
 @export var settings_menu: MarginContainer
@@ -9,7 +10,8 @@ class_name MainMenu extends Control
 func _ready() -> void:
 	# Hide the mouse - Use custom floppy fish as mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	##AudioGlobal.current_area = "MainMenu"
+	AudioGlobal.current_area = "MainMenu"
+
 
 # Make the mouse anchor customer sprite follow the mouse
 func _process(_delta):

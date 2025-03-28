@@ -17,7 +17,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SceneManager="*res://scripts/Scene_Manager.gd"
+SceneManager="*res://scripts/Globals/Scene_Manager.gd"
+AudioGlobal="*res://scripts/Globals/Audio_Global.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
