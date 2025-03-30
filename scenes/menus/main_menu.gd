@@ -6,11 +6,16 @@ class_name MainMenu extends Control
 @export var main_menu: MarginContainer
 @export var settings_menu: MarginContainer
 
+@onready var master_slider = $Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Master/HSlider
+@onready var music_slider = $Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Music/HSlider
+@onready var sfx_slider = $Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/SFX/HSlider
+
 
 func _ready() -> void:
 	# Hide the mouse - Use custom floppy fish as mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	AudioGlobal.current_area = "MainMenu"
+
 
 
 # Make the mouse anchor customer sprite follow the mouse

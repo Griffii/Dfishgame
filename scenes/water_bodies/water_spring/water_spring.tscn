@@ -26,5 +26,6 @@ shape = SubResource("RectangleShape2D_any84")
 [node name="splash_sfx" type="AudioStreamPlayer2D" parent="Audio_Controller"]
 stream = ExtResource("4_k6hn3")
 max_polyphony = 5
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

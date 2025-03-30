@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://ceis3jqg5uuvx"]
+[gd_scene load_steps=30 format=4 uid="uid://ceis3jqg5uuvx"]
 
 [ext_resource type="FontFile" uid="uid://0hcmt3kv7m6g" path="res://assets/fonts/BadComic-Regular.ttf" id="1_pis8r"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_wwwou"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://08kc2b2smy51" path="res://scenes/water_bodies/water_body/water_body.tscn" id="8_7xipv"]
 [ext_resource type="Texture2D" uid="uid://cj3unnxsp77oo" path="res://assets/tile sets/Basic_Shapes_Gray_Tileset.png" id="8_q22qo"]
 [ext_resource type="Texture2D" uid="uid://d113ivic715jn" path="res://assets/tile sets/Cartoon_GroundDecorations_02.png" id="9_xfilq"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="15_mmqrk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkomg"]
 radius = 6.0
@@ -683,10 +684,18 @@ region_rect = Rect2(275, 178, 90, 27)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nwlyg"]
 texture = ExtResource("4_e87xw")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 region_rect = Rect2(99, 2, 90, 27)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckbo5"]
 texture = ExtResource("4_e87xw")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
 region_rect = Rect2(3, 2, 90, 27)
 
 [node name="Main_Menu" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu")]
@@ -889,19 +898,113 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Menu_Container/Settings_Window"]
-z_index = 1
+[node name="MarginContainer" type="MarginContainer" parent="Settings_Menu_Container/Settings_Window"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings_Menu_Container/Settings_Window/MarginContainer"]
+z_index = 1
+layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Reset_Button" type="Button" parent="Settings_Menu_Container/Settings_Window/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
+[node name="Label" type="Label" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 32
+text = "Volume Control"
+
+[node name="Master" type="HBoxContainer" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MasterLabel" type="Label" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Master"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 32
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Master"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("15_mmqrk")
+bus_name = "Master"
+
+[node name="Music" type="HBoxContainer" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MusicLabel" type="Label" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 32
+text = "Music
+"
+
+[node name="HSlider" type="HSlider" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Music"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("15_mmqrk")
+bus_name = "music"
+
+[node name="SFX" type="HBoxContainer" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SFXLabel" type="Label" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("1_pis8r")
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+
+[node name="HSlider" type="HSlider" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/SFX"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("15_mmqrk")
+bus_name = "sfx"
+
+[node name="Reset_Button" type="Button" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -913,7 +1016,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_nwlyg")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ckbo5")
 text = "⚠️ Reset Level Data ⚠️"
 
-[node name="Go_Back__Button" type="Button" parent="Settings_Menu_Container/Settings_Window/VBoxContainer"]
+[node name="Go_Back__Button" type="Button" parent="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -929,5 +1032,5 @@ text = "Go Back"
 [connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/play_btn" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/settings_btn" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Main_Menu_Container/Buttons_Window/VBoxContainer/quit_btn" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/VBoxContainer/Reset_Button" to="." method="_on_reset_levels_data_button_pressed"]
-[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/VBoxContainer/Go_Back__Button" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Reset_Button" to="." method="_on_reset_levels_data_button_pressed"]
+[connection signal="pressed" from="Settings_Menu_Container/Settings_Window/MarginContainer/VBoxContainer/Go_Back__Button" to="." method="_on_options_pressed"]

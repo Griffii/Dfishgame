@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctincgfe3f2lc"]
+[gd_scene load_steps=23 format=3 uid="uid://ctincgfe3f2lc"]
 
 [ext_resource type="Script" path="res://scenes/menus/in_game_ui.gd" id="1_k0uri"]
 [ext_resource type="Texture2D" uid="uid://cfl86wrtrta8p" path="res://assets/SproutLands Art Pack/Sprite sheet for Basic Pack.png" id="1_ktl8f"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://kwinsc3w6nes" path="res://assets/SproutLands Art Pack/UI Big Play Button.png" id="3_uohvr"]
 [ext_resource type="FontFile" uid="uid://clf3b75neey3j" path="res://assets/fonts/GOODDP__.TTF" id="6_3bj0b"]
 [ext_resource type="Script" path="res://scenes/menus/settings_menu.gd" id="6_oaxbd"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="7_w2kjx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fu3s"]
 texture = ExtResource("3_uohvr")
@@ -58,10 +59,18 @@ region_rect = Rect2(772, 195, 22, 24)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3wrj"]
 texture = ExtResource("1_ktl8f")
+texture_margin_left = 2.0
+texture_margin_top = 4.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 region_rect = Rect2(642, 169, 28, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xnpyl"]
 texture = ExtResource("1_ktl8f")
+texture_margin_left = 2.0
+texture_margin_top = 4.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 region_rect = Rect2(578, 169, 28, 14)
 
 [node name="In_Game_UI" type="Control" node_paths=PackedStringArray("pause_menu", "settings_menu")]
@@ -183,8 +192,28 @@ script = ExtResource("6_oaxbd")
 [node name="SettingsMenu" type="MarginContainer" parent="SettingsMenu_Container"]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="SettingsMenu_Container/SettingsMenu"]
-custom_minimum_size = Vector2(250, 250)
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu_Container/SettingsMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="SettingsLabel" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_s7ggc")
+theme_override_font_sizes/font_size = 32
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -195,38 +224,112 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Settings_VBox" type="VBoxContainer" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer"]
+[node name="Settings_VBox" type="VBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0.564706, 0.384314, 0.364706, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button_VBox" type="VBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("2_s7ggc")
 theme_override_font_sizes/font_size = 32
-text = "SETTINGS"
-horizontal_alignment = 1
+text = "Volume Control"
 
-[node name="seperator" type="Control" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox"]
+[node name="Master" type="HBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Button_VBox" type="VBoxContainer" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox"]
+[node name="MasterLabel" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Master"]
 layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_s7ggc")
+theme_override_font_sizes/font_size = 32
+text = "Master"
 
-[node name="ResetLevelDataButton" type="Button" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox/Button_VBox"]
+[node name="HSlider" type="HSlider" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Master"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("7_w2kjx")
+bus_name = "Master"
+
+[node name="Music" type="HBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MusicLabel" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Music"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_s7ggc")
+theme_override_font_sizes/font_size = 32
+text = "Music
+"
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Music"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("7_w2kjx")
+bus_name = "music"
+
+[node name="SFX" type="HBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SFXLabel" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/SFX"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_s7ggc")
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/SFX"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+script = ExtResource("7_w2kjx")
+bus_name = "sfx"
+
+[node name="ResetLevelDataButton" type="Button" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -239,7 +342,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_l3wrj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xnpyl")
 text = "Reset Levels Data"
 
-[node name="BackButton" type="Button" parent="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox/Button_VBox"]
+[node name="BackButton" type="Button" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -256,5 +359,5 @@ text = "Go Back"
 [connection signal="pressed" from="PauseMenu_Container/PauseMenu/VBoxContainer/NinePatchRect/MarginContainer/Pause_VBox/Button_VBox/ResetButton" to="PauseMenu_Container" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="PauseMenu_Container/PauseMenu/VBoxContainer/NinePatchRect/MarginContainer/Pause_VBox/Button_VBox/SettingsButton" to="PauseMenu_Container" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PauseMenu_Container/PauseMenu/VBoxContainer/NinePatchRect/MarginContainer/Pause_VBox/Button_VBox/QuitButton" to="PauseMenu_Container" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox/Button_VBox/ResetLevelDataButton" to="SettingsMenu_Container" method="_on_reset_levels_data_button_pressed"]
-[connection signal="pressed" from="SettingsMenu_Container/SettingsMenu/NinePatchRect/MarginContainer/Settings_VBox/Button_VBox/BackButton" to="SettingsMenu_Container" method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/ResetLevelDataButton" to="SettingsMenu_Container" method="_on_reset_levels_data_button_pressed"]
+[connection signal="pressed" from="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/BackButton" to="SettingsMenu_Container" method="_on_go_back_button_pressed"]
