@@ -2,10 +2,8 @@
 	"levels": [
 		{
 			"collected_coins": [
-				"Coin1",
-				"Coin2"
 			],
-			"is_completed": true,
+			"is_completed": false,
 			"level_name": "Tutorial",
 			"scene_path": "res://scenes/levels/Tutorial.tscn",
 			"uncollected_coins": [
@@ -15,13 +13,10 @@
 		},
 		{
 			"collected_coins": [
-				"Coin1",
-				"Coin2",
-				"Coin3"
 			],
-			"is_completed": true,
-			"level_name": "Level 1",
-			"scene_path": "res://scenes/levels/Level 1.tscn",
+			"is_completed": false,
+			"level_name": "The River",
+			"scene_path": "res://scenes/levels/The River.tscn",
 			"uncollected_coins": [
 				"Coin1",
 				"Coin2",
@@ -30,10 +25,6 @@
 		},
 		{
 			"collected_coins": [
-				"Coin1",
-				"Coin2",
-				"Coin5",
-				"Coin6"
 			],
 			"is_completed": false,
 			"level_name": "The Cave Entrance",
