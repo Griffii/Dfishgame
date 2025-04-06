@@ -1,9 +1,9 @@
-[gd_scene load_steps=41 format=4 uid="uid://2f7xjiyiaipg"]
+[gd_scene load_steps=40 format=4 uid="uid://2f7xjiyiaipg"]
 
 [ext_resource type="Script" path="res://scenes/levels/tutorial.gd" id="1_uwmvn"]
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="3_qjvjr"]
+[ext_resource type="TileSet" uid="uid://dajpkigmmhvi2" path="res://assets/tile sets/Ground_Decorations_01.tres" id="4_k52cd"]
 [ext_resource type="TileSet" uid="uid://dc7uviqi0tg3d" path="res://assets/tile sets/cartoon_grass_tileset_01.tres" id="4_wrehl"]
-[ext_resource type="Texture2D" uid="uid://d113ivic715jn" path="res://assets/tile sets/Cartoon_GroundDecorations_02.png" id="5_rmiac"]
 [ext_resource type="Texture2D" uid="uid://cj3unnxsp77oo" path="res://assets/tile sets/Basic_Shapes_Gray_Tileset.png" id="6_7k5a6"]
 [ext_resource type="Texture2D" uid="uid://dnfhil8fe0fb4" path="res://assets/tile sets/TreeTrunks_01.png" id="7_67yp1"]
 [ext_resource type="Texture2D" uid="uid://cdsb2734ye348" path="res://assets/tile sets/Tree_Platforms_01.png" id="8_we5x5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cf4pvnl48y3je" path="res://scenes/hazards/spikes/spikes_02.tscn" id="10_mp06b"]
 [ext_resource type="PackedScene" uid="uid://blraawx5l42n3" path="res://scenes/hazards/spikes/spikes_01.tscn" id="11_e27rh"]
 [ext_resource type="Texture2D" uid="uid://iktienfgq2mt" path="res://assets/objects/Sign_01.png" id="12_tkshe"]
+[ext_resource type="Texture2D" uid="uid://c4t58tstcd2yy" path="res://assets/plants/Tree_03.png" id="13_2ktqc"]
 [ext_resource type="Texture2D" uid="uid://523f3nthi3en" path="res://assets/objects/Sign_02.png" id="13_kuhuq"]
 [ext_resource type="PackedScene" uid="uid://62ba11sm364a" path="res://scenes/interactable objects/coin.tscn" id="14_4ohbn"]
 [ext_resource type="Script" path="res://scripts/fade_in_and_out_area.gd" id="15_d7fb2"]
@@ -21,29 +22,6 @@
 [ext_resource type="FontFile" uid="uid://drimirxkyao5u" path="res://assets/fonts/PixelOperator8.ttf" id="20_3q1hk"]
 [ext_resource type="PackedScene" uid="uid://cucddkqcentrc" path="res://dialogue/Styles/narrator_dialogue_box.tscn" id="21_5rkc3"]
 [ext_resource type="PackedScene" uid="uid://cmjxmqtv3jc8p" path="res://scenes/menus/world_audio_manager.tscn" id="21_ue2m8"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksrvs"]
-texture = ExtResource("5_rmiac")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_dh8yj"]
-tile_offset_axis = 1
-tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_ksrvs")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkaxe"]
 texture = ExtResource("6_7k5a6")
@@ -292,12 +270,12 @@ tile_set = ExtResource("4_wrehl")
 [node name="Decorations_Layer_Front" type="TileMapLayer" parent="TileMap_Container"]
 z_index = 2
 tile_map_data = PackedByteArray("AAAbAPb/AQAAAAEAAAAcAPb/AQADAAEAAAAdAPb/AQADAAEAAAAeAPb/AQADAAEAAAAfAPb/AQADAAEAAAAgAPb/AQADAAEAAAAhAPb/AQADAAEAAAAiAPb/AQADAAEAAAAjAPb/AQADAAEAAAAkAPb/AQADAAEAAAAlAPb/AQADAAEAAAAmAPb/AQADAAEAAAAnAPb/AQADAAEAAAAoAPb/AQAHAAEAAAApAPb/AQAIAAEAAAAqAPb/AQADAAEAAAArAPb/AQADAAEAAAAsAPb/AQADAAEAAAAtAPb/AQADAAEAAAAuAPb/AQADAAEAAAAvAPb/AQADAAEAAAAwAPb/AQADAAEAAAAxAPb/AQADAAEAAAAyAPb/AQADAAEAAAAzAPb/AQABAAEAAAAAAPj/AQADAAEAAAABAPj/AQADAAEAAAACAPj/AQADAAEAAAADAPj/AQADAAEAAAAEAPj/AQADAAEAAAAFAPj/AQADAAEAAAAGAPj/AQADAAEAAAAHAPj/AQADAAEAAAAIAPj/AQADAAEAAAAJAPj/AQADAAEAAAAKAPj/AQADAAEAAAALAPj/AQADAAEAAAAMAPj/AQADAAEAAAANAPj/AQADAAEAAAAOAPj/AQAAAAEAAABUAPv/AQAAAAEAAABVAPv/AQADAAEAAABWAPv/AQADAAEAAABXAPv/AQADAAEAAABYAPv/AQADAAEAAABZAPv/AQADAAEAAABaAPv/AQADAAEAAABbAPv/AQADAAEAAABcAPv/AQADAAEAAABdAPv/AQADAAEAAAA+APb/AQADAAEAAAA9APb/AQADAAEAAAA8APb/AQAAAAEAAABGAPb/AQADAAEAAABHAPb/AQABAAEAAAAoAPX/AQAHAAAAAAApAPX/AQAIAAAAAABeAOz/AQAAAAEAAABfAOz/AQADAAEAAABgAOz/AQADAAEAAABhAOz/AQADAAEAAABiAOz/AQADAAEAAABjAOz/AQADAAEAAABkAOz/AQADAAEAAABlAOz/AQABAAEAAABwAOz/AQAAAAEAAABxAOz/AQADAAEAAAByAOz/AQADAAEAAABzAOz/AQADAAEAAAB0AOz/AQADAAEAAAB1AOz/AQADAAEAAAB2AOz/AQADAAEAAAB3AOz/AQADAAEAAAB4AOz/AQADAAEAAAB5AOz/AQADAAEAAAB6AOz/AQADAAEAAAB7AOz/AQADAAEAAAB8AOz/AQADAAEAAAB9AOz/AQADAAEAAAB+AOz/AQADAAEAAAB/AOz/AQADAAEAAACAAOz/AQADAAEAAACBAOz/AQADAAEAAACCAOz/AQADAAEAAACDAOz/AQADAAEAAACEAOz/AQADAAEAAACFAOz/AQADAAEAAACGAOz/AQADAAEAAACHAOz/AQADAAEAAACIAOz/AQADAAEAAACJAOz/AQAAAAEAAACTAPn/AQADAAEAAACUAPn/AQADAAEAAACVAPn/AQADAAEAAACWAPn/AQADAAEAAACXAPn/AQADAAEAAACYAPn/AQADAAEAAACZAPn/AQADAAEAAACaAPn/AQADAAEAAACbAPn/AQADAAEAAACcAPn/AQADAAEAAACdAPn/AQADAAEAAACeAPn/AQADAAEAAACfAPn/AQADAAEAAACgAPn/AQADAAEAAAChAPn/AQADAAEAAACiAPn/AQADAAEAAACjAPn/AQADAAEAAACkAPn/AQADAAEAAAClAPn/AQADAAEAAACmAPn/AQADAAEAAACnAPn/AQADAAEAAACoAPn/AQADAAEAAACpAPn/AQADAAEAAACqAPn/AQADAAEAAACrAPn/AQAAAAEAAACSAPn/AQAAAAEAAAA=")
-tile_set = SubResource("TileSet_dh8yj")
+tile_set = ExtResource("4_k52cd")
 
 [node name="Decorations_Layer_Back" type="TileMapLayer" parent="TileMap_Container"]
 z_index = -1
 tile_map_data = PackedByteArray("AAAjAPb/AQACAAAAAAArAPb/AQAAAAAAAAAsAPb/AQABAAAAAAAxAPb/AQAAAAAAAAAyAPb/AQABAAAAAABZAPv/AQAAAAAAAABaAPv/AQABAAAAAAABAPj/AQAAAAAAAAACAPj/AQABAAAAAAAKAPj/AQACAAAAAAAeAPb/AQACAAAAAAAvAPb/AQACAAAAAABVAPv/AQACAAAAAAAlAPb/AQAFAAEAAAAuAPb/AQAGAAEAAAAgAPb/AQAEAAEAAABbAPv/AQAEAAEAAABKAP3/AQAEAAEAAABQAP3/AQAFAAEAAAAQAP3/AQAEAAEAAAAYAP3/AQAEAAEAAAAGAPj/AQAEAAEAAABSAP3/AQAGAAEAAABgAOz/AQAAAAAAAABhAOz/AQABAAAAAAB0AOz/AQAAAAAAAAB1AOz/AQABAAAAAACGAOz/AQAAAAAAAACHAOz/AQABAAAAAACVAPn/AQAAAAAAAACWAPn/AQABAAAAAAChAPn/AQAAAAAAAACiAPn/AQABAAAAAACpAPn/AQAAAAAAAACqAPn/AQABAAAAAACdAPn/AQACAAAAAACmAPn/AQACAAAAAACDAOz/AQACAAAAAAB5AOz/AQACAAAAAAB+AOz/AQACAAAAAABkAOz/AQACAAAAAACEAOz/AQACAAEAAAB7AOz/AQACAAEAAABxAOz/AQACAAEAAACYAPn/AQACAAEAAACTAPn/AQACAAEAAACoAPn/AQACAAEAAACkAPn/AQACAAEAAACjAPn/AQACAAEAAACfAPn/AQACAAEAAACKAP7/AQAFAAEAAACRAP7/AQAEAAEAAACPAP7/AQADAAEAAACNAP7/AQADAAEAAACOAP7/AQABAAEAAACLAP7/AQABAAEAAABnAPD/AQABAAEAAABuAPD/AQABAAEAAABmAPD/AQAEAAEAAABqAPD/AQAAAAEAAABsAPD/AQAAAAEAAABMAP3/AQAAAAEAAABPAP3/AQADAAEAAABIAP3/AQADAAEAAAA1APr/AQADAAEAAAA5APr/AQADAAEAAAAVAP3/AQADAAEAAAASAP3/AQADAAEAAAA=")
-tile_set = SubResource("TileSet_dh8yj")
+tile_set = ExtResource("4_k52cd")
 
 [node name="GrayShapes_Layer" type="TileMapLayer" parent="TileMap_Container"]
 z_index = -2
@@ -393,6 +371,16 @@ texture = ExtResource("12_tkshe")
 z_index = -1
 position = Vector2(2294, -338)
 texture = ExtResource("13_kuhuq")
+
+[node name="Tree03" type="Sprite2D" parent="Objects_Container"]
+z_index = -1
+position = Vector2(24, -651)
+texture = ExtResource("13_2ktqc")
+
+[node name="Tree04" type="Sprite2D" parent="Objects_Container"]
+z_index = -1
+position = Vector2(2123, -707)
+texture = ExtResource("13_2ktqc")
 
 [node name="Coin_Container" type="Node" parent="."]
 
