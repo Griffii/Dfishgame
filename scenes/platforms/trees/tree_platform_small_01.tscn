@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg6njpallbucu"]
+
+[ext_resource type="Texture2D" uid="uid://dhkopxvgm0vgk" path="res://assets/platforms/trees/Leaf_Platform_Small_01.png" id="1_c8t10"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ggnl3"]
+radius = 8.0
+height = 32.0
+
+[node name="Small_Tree_Platform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c8t10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ggnl3")

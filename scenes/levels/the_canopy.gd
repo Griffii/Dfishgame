@@ -14,3 +14,8 @@ func _ready() -> void:
 func _on_kill_plane_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		body.explode()
+
+
+func _on_end_area_body_entered(body: Node2D) -> void:
+		if body is CharacterBody2D:
+		SceneManager.load_next_level(level_name, true)

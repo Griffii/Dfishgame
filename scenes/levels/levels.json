@@ -20,7 +20,7 @@
 			"uncollected_coins": [
 				"Coin1",
 				"Coin2",
-				"Coin3".
+				"Coin3",
 				"Coin4"
 			]
 		},
@@ -44,7 +44,16 @@
 			"is_completed": false,
 			"level_name": "The Canopy",
 			"scene_path": "res://scenes/levels/The Canopy.tscn",
-			"uncollected_coins": []
+			"uncollected_coins": [
+				"Coin1",
+				"Coin2",
+				"Coin3",
+				"Coin4",
+				"Coin5",
+				"Coin6",
+				"Coin7",
+				"Coin8"
+			]
 		}
 	]
 }
