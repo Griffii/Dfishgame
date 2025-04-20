@@ -213,7 +213,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(400, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -328,6 +328,26 @@ max_value = 1.0
 step = 0.001
 script = ExtResource("7_w2kjx")
 bus_name = "sfx"
+
+[node name="Blood" type="HBoxContainer" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
+layout_mode = 2
+
+[node name="SFXLabel2" type="Label" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Blood"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_s7ggc")
+theme_override_font_sizes/font_size = 32
+text = "Blood"
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox/Blood"]
+layout_mode = 2
+disabled = true
+button_pressed = true
 
 [node name="ResetLevelDataButton" type="Button" parent="SettingsMenu_Container/SettingsMenu/VBoxContainer/MarginContainer/Settings_VBox/MarginContainer/Button_VBox"]
 custom_minimum_size = Vector2(200, 60)
