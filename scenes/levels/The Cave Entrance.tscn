@@ -38,7 +38,7 @@ shader_parameter/sigma = 3.3
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dlhxe"]
 gradient = SubResource("Gradient_2x0f8")
 
-[node name="Level 2-1" type="Node2D"]
+[node name="The_Cave_Entrance" type="Node2D"]
 script = ExtResource("1_6sba3")
 
 [node name="D_Salmon" parent="." instance=ExtResource("2_lvs8v")]
