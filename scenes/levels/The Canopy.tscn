@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dvy50cse08105" path="res://characters/D_salmon/salmon_player.tscn" id="2_md2rj"]
 [ext_resource type="TileSet" uid="uid://dc7uviqi0tg3d" path="res://assets/tile sets/cartoon_grass_tileset_01.tres" id="3_2oly3"]
 [ext_resource type="Texture2D" uid="uid://eylxbsngnxls" path="res://assets/tile sets/TreeTrunks_Thick_01.png" id="4_b4sxu"]
-[ext_resource type="PackedScene" uid="uid://blraawx5l42n3" path="res://scenes/hazards/spikes/spikes_01.tscn" id="5_5bfkp"]
 [ext_resource type="PackedScene" uid="uid://n6hm846usv51" path="res://scenes/platforms/trees/tree_platform_01.tscn" id="5_fmdtm"]
 [ext_resource type="PackedScene" uid="uid://dg6njpallbucu" path="res://scenes/platforms/trees/tree_platform_small_01.tscn" id="6_k8k8j"]
 [ext_resource type="Texture2D" uid="uid://cdsb2734ye348" path="res://assets/tile sets/Tree_Platforms_01.png" id="8_kadtp"]
@@ -176,6 +175,9 @@ sources/0 = SubResource("TileSetAtlasSource_g5ow6")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hvca"]
 size = Vector2(581, 121)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqbjw"]
+size = Vector2(175, 40)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hoefh"]
 texture = ExtResource("4_b4sxu")
 texture_region_size = Vector2i(64, 64)
@@ -206,7 +208,7 @@ gradient = SubResource("Gradient_fw1x8")
 script = ExtResource("1_pjnxt")
 
 [node name="D_Salmon" parent="." instance=ExtResource("2_md2rj")]
-position = Vector2(120, -424)
+position = Vector2(116, -414)
 
 [node name="Tilemap_Container" type="Node" parent="."]
 
@@ -513,10 +515,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards_Container/Kill_Plane"]
 shape = SubResource("WorldBoundaryShape2D_rl3g0")
 
-[node name="Spikes_01" parent="Hazards_Container" instance=ExtResource("5_5bfkp")]
-z_index = 1
-position = Vector2(1077, -169)
-
 [node name="Tree_Leaves_Container" type="Node" parent="."]
 
 [node name="Leaves" type="TileMapLayer" parent="Tree_Leaves_Container"]
@@ -546,6 +544,33 @@ shape = SubResource("RectangleShape2D_2hvca")
 
 [node name="Spawn" type="Node2D" parent="Checkpoint_Container"]
 position = Vector2(118, -417)
+
+[node name="Checkpoint_01" type="Node2D" parent="Checkpoint_Container"]
+position = Vector2(2172, -1072)
+
+[node name="Area2D" type="Area2D" parent="Checkpoint_Container/Checkpoint_01"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Container/Checkpoint_01/Area2D"]
+position = Vector2(-6, 117)
+shape = SubResource("RectangleShape2D_rqbjw")
+
+[node name="Checkpoint_02" type="Node2D" parent="Checkpoint_Container"]
+position = Vector2(583, -2297)
+
+[node name="Area2D" type="Area2D" parent="Checkpoint_Container/Checkpoint_02"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Container/Checkpoint_02/Area2D"]
+position = Vector2(-6, 117)
+shape = SubResource("RectangleShape2D_rqbjw")
+
+[node name="Checkpoint_03" type="Node2D" parent="Checkpoint_Container"]
+position = Vector2(3092, -2301)
+
+[node name="Area2D" type="Area2D" parent="Checkpoint_Container/Checkpoint_03"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint_Container/Checkpoint_03/Area2D"]
+position = Vector2(-6, 117)
+shape = SubResource("RectangleShape2D_rqbjw")
 
 [node name="Coin_Container" type="Node" parent="."]
 
@@ -627,3 +652,6 @@ texture = SubResource("GradientTexture2D_t8plu")
 
 [connection signal="body_entered" from="Hazards_Container/Kill_Plane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="body_entered" from="Tree_Leaves_Container/TheEnd/EndArea" to="." method="_on_end_area_body_entered"]
+[connection signal="body_entered" from="Checkpoint_Container/Checkpoint_01/Area2D" to="." method="checkpoint01"]
+[connection signal="body_entered" from="Checkpoint_Container/Checkpoint_02/Area2D" to="." method="checkpoint02"]
+[connection signal="body_entered" from="Checkpoint_Container/Checkpoint_03/Area2D" to="." method="checkpoint03"]
